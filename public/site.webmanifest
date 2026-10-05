@@ -1,0 +1,18 @@
+{
+  "name": "SmartBuyIndia",
+  "short_name": "SmartBuyIndia",
+  "description": "Independent product research, buying guides and comparisons for Indian shoppers.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "minimal-ui",
+  "background_color": "#fbfaf7",
+  "theme_color": "#0f3d33",
+  "icons": [
+    {
+      "src": "favicon/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

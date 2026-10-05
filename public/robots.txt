@@ -1,0 +1,8 @@
+# robots.txt — SmartBuyIndia
+# The production build regenerates this file (see plugins/sitemap-plugin.js).
+# Add your Sitemap line here once SITE_URL is set in src/config/site.js.
+
+User-agent: *
+Allow: /
+
+# Sitemap: https://www.your-domain.com/sitemap.xml

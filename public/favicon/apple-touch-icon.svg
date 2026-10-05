@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="SmartBuyIndia">
+  <rect width="180" height="180" rx="40" fill="#0f3d33"/>
+  <path d="M56 62h68l-7.4 48.6a11 11 0 0 1-10.9 9.4H74.3a11 11 0 0 1-10.9-9.4L56 62Z" fill="none" stroke="#f5f2ea" stroke-width="9.5" stroke-linejoin="round"/>
+  <path d="M73 62v-8.5a17 17 0 0 1 34 0V62" fill="none" stroke="#f5f2ea" stroke-width="9.5" stroke-linecap="round"/>
+  <path d="M74.5 94 87 106.5l22.5-25" fill="none" stroke="#f0a500" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

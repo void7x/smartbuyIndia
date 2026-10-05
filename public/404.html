@@ -1,0 +1,24 @@
+<!--
+  GitHub Pages SPA fallback.
+  Only needed if you switch ROUTER_MODE to 'browser' (clean URLs). With the
+  default HashRouter this file is never reached, but it is harmless to ship.
+  It redirects deep links such as /product/example-air-fryer back to the app.
+-->
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <title>SmartBuyIndia</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      // Preserve the requested path so the app can restore it.
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      var base = '/' + path.split('/')[1] + '/';
+      sessionStorage.setItem('sbi_redirect', path);
+      window.location.replace(base + '#/redirect' + encodeURIComponent(path));
+    </script>
+  </head>
+  <body>
+    <p>Loading SmartBuyIndia…</p>
+  </body>
+</html>
