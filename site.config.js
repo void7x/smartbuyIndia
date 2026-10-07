@@ -1,39 +1,43 @@
 /**
  * ============================================================================
- * DEPLOYMENT CONFIGURATION — the single source of truth for paths
+ * DEPLOYMENT CONFIGURATION — the single source of truth for public paths
  * ============================================================================
  * Plain Node module (no Vite-only syntax) so it can be imported by:
- *   • vite.config.js            -> sets `base` for asset URLs
- *   • plugins/sitemap-plugin.js -> builds absolute <loc> URLs
- *   • src/config/site.js        -> builds canonical / Open Graph URLs at runtime
+ *   • vite.config.js            -> sets Vite's asset base
+ *   • plugins/sitemap-plugin.js -> builds sitemap URLs
+ *   • src/config/site.js        -> builds canonical / Open Graph URLs
  *
- * Change the values here ONCE when you deploy or attach a domain.
+ * Production hosting target: Render Static Site at the domain root.
+ * GitHub Pages remains a backup/archive deployment path on main, but this
+ * development branch is intentionally configured for clean browser URLs.
  */
 
 /**
  * Base path the app is served from.
  *
- *   GitHub Pages project site -> '/smartbuyindia/'   (trailing slash required)
- *   GitHub Pages user site    -> '/'                 (https://<user>.github.io/)
- *   Custom domain at root     -> '/'
+ *   Render/custom domain at root -> '/'
+ *
+ * Keep this at '/' for SmartBuyIndia's production URL structure:
+ *   /product/...
+ *   /category/...
+ *   /guide/...
  */
-export const SITE_BASE = '/smartbuyindia/';
+export const SITE_BASE = '/';
 
 /**
- * Public origin, WITHOUT a trailing slash. Leave as '' until a domain exists —
- * canonical tags then fall back to root-relative URLs, and the generated
- * robots.txt keeps its Sitemap line commented out.
+ * Public origin, WITHOUT a trailing slash.
+ * Leave as '' during development; set the final production origin before
+ * launch so canonical, Open Graph and sitemap URLs become absolute.
  *
- *   GitHub Pages -> 'https://<your-github-username>.github.io/smartbuyindia'
- *   Custom domain-> 'https://www.smartbuyindia.in'
+ *   Render temporary URL -> 'https://smartbuyindia.onrender.com'
+ *   Custom domain       -> 'https://www.smartbuyindia.in'
  */
 export const SITE_URL = '';
 
 /**
- * 'hash'    -> URLs like /#/product/example-air-fryer
- *              Works on GitHub Pages with zero extra configuration and never
- *              404s on a hard refresh or a shared deep link. Default.
- * 'browser' -> clean URLs like /product/example-air-fryer
- *              Needs a real domain plus a server fallback (see README).
+ * Use normal browser URLs for React Router.
+ *
+ * Render Static Site needs a rewrite rule from /* to /index.html so direct
+ * visits to nested routes are handled by React Router.
  */
-export const ROUTER_MODE = 'hash';
+export const ROUTER_MODE = 'browser';

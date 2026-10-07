@@ -6,8 +6,8 @@ import { ROUTES } from './config/routes.js';
 
 /**
  * Pages are code-split with React.lazy: the initial bundle only carries the
- * shell, routing and the data layer. Each page loads on demand, which keeps the
- * first paint fast on a slow mobile connection.
+ * shell, routing and the data layer. Each page loads on demand, which keeps
+ * the first paint fast on a slow mobile connection.
  */
 const HomePage = lazy(() => import('./pages/HomePage.jsx'));
 const CategoriesPage = lazy(() => import('./pages/CategoriesPage.jsx'));
