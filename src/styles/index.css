@@ -2760,3 +2760,396 @@ hr {
     color: #000;
   }
 }
+
+
+/* ==========================================================================
+   SmartBuyIndia — premium interaction layer
+   Phase 2: preserve the existing light palette while adding depth, motion and
+   clearer interactive feedback. No layout framework or JS animation library.
+   ========================================================================== */
+
+:root {
+  --motion-fast: 160ms;
+  --motion-standard: 260ms;
+  --motion-slow: 520ms;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Make the whole interface feel a little more intentional without changing
+   the existing brand colours. */
+body {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(220, 234, 229, 0.42), transparent 26rem),
+    var(--paper);
+}
+
+/* Header: slightly richer separation from the page while scrolling. */
+.site-header {
+  box-shadow: 0 1px 0 rgba(16, 26, 23, 0.02), 0 10px 28px -24px rgba(16, 26, 23, 0.28);
+  transition: box-shadow var(--motion-standard) var(--ease-smooth),
+    background-color var(--motion-standard) ease;
+}
+
+.brand {
+  transition: transform var(--motion-standard) var(--ease-emphasis), color var(--motion-fast) ease;
+}
+
+.brand:hover {
+  transform: translateY(-1px);
+}
+
+.brand__mark {
+  transition: transform var(--motion-standard) var(--ease-emphasis),
+    filter var(--motion-standard) ease;
+}
+
+.brand:hover .brand__mark {
+  transform: rotate(-3deg) scale(1.06);
+  filter: drop-shadow(0 7px 10px rgba(31, 111, 95, 0.16));
+}
+
+.site-nav a,
+.icon-btn {
+  transition:
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    transform var(--motion-fast) var(--ease-smooth),
+    box-shadow var(--motion-fast) ease;
+}
+
+.site-nav a:hover,
+.icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+.site-nav a[aria-current='page'] {
+  box-shadow: inset 0 0 0 1px rgba(31, 111, 95, 0.05);
+}
+
+/* Buttons get a slightly more premium physical response. */
+.btn {
+  transition:
+    transform var(--motion-standard) var(--ease-smooth),
+    box-shadow var(--motion-standard) var(--ease-smooth),
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.btn__external {
+  transition: transform var(--motion-fast) var(--ease-smooth);
+}
+
+.btn:hover .btn__external {
+  transform: translate(2px, -1px);
+}
+
+/* Cards: stronger lift, soft highlight and better media feedback. */
+.card {
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--motion-standard) var(--ease-emphasis),
+    box-shadow var(--motion-standard) var(--ease-emphasis),
+    border-color var(--motion-standard) ease,
+    background-color var(--motion-standard) ease;
+}
+
+.card--link:hover,
+.card.card--relative:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 22px 46px -28px rgba(16, 26, 23, 0.34),
+    0 8px 18px rgba(16, 26, 23, 0.06);
+  border-color: rgba(31, 111, 95, 0.34);
+}
+
+.card--relative:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #fcfdfc 100%);
+}
+
+.card__title a {
+  transition: color var(--motion-fast) ease;
+}
+
+.category-card__icon {
+  transition:
+    transform var(--motion-standard) var(--ease-emphasis),
+    background-color var(--motion-standard) ease,
+    box-shadow var(--motion-standard) ease;
+}
+
+.card:hover .category-card__icon {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 10px 18px -12px rgba(31, 111, 95, 0.38);
+  background: #f2f8f5;
+}
+
+.chip {
+  transition:
+    transform var(--motion-fast) var(--ease-smooth),
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--brand-300);
+  color: var(--brand-800);
+}
+
+.product-card__media {
+  isolation: isolate;
+}
+
+.product-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 38%, rgba(16,26,23,0.04));
+  opacity: 0.55;
+  transition: opacity var(--motion-standard) ease;
+}
+
+.product-card__media img,
+.product-card__media svg {
+  transition: transform 520ms var(--ease-emphasis), filter 520ms var(--ease-emphasis);
+}
+
+.card:hover .product-card__media img,
+.card:hover .product-card__media svg {
+  transform: scale(1.035);
+}
+
+.card:hover .product-card__media::after {
+  opacity: 0.9;
+}
+
+/* Staggered first-paint motion for grids. It only plays once, feels polished,
+   and does not require JavaScript scroll observers. */
+.grid > .card.card--relative {
+  animation: smartbuy-card-in var(--motion-slow) var(--ease-emphasis) both;
+}
+
+.grid > .card.card--relative:nth-child(2) { animation-delay: 55ms; }
+.grid > .card.card--relative:nth-child(3) { animation-delay: 110ms; }
+.grid > .card.card--relative:nth-child(4) { animation-delay: 165ms; }
+.grid > .card.card--relative:nth-child(5) { animation-delay: 220ms; }
+.grid > .card.card--relative:nth-child(6) { animation-delay: 275ms; }
+
+@keyframes smartbuy-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hero: deeper depth without changing the existing brand direction. */
+.hero {
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 28rem;
+  height: 28rem;
+  right: -7rem;
+  top: -11rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 165, 0, 0.18), transparent 68%);
+  filter: blur(6px);
+  pointer-events: none;
+  animation: hero-orb 9s var(--ease-smooth) infinite alternate;
+}
+
+.hero__inner {
+  animation: hero-enter 700ms var(--ease-emphasis) both;
+}
+
+.hero__panel {
+  box-shadow:
+    0 26px 70px -38px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  transition:
+    transform var(--motion-slow) var(--ease-emphasis),
+    box-shadow var(--motion-slow) var(--ease-emphasis),
+    border-color var(--motion-standard) ease;
+}
+
+.hero__panel:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 32px 76px -34px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.23);
+}
+
+.hero__search {
+  box-shadow: 0 14px 30px -24px rgba(8, 37, 31, 0.48);
+  transition: box-shadow var(--motion-standard) ease, transform var(--motion-standard) var(--ease-smooth);
+}
+
+.hero__search:focus-within {
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 34px -22px rgba(8, 37, 31, 0.52),
+    0 0 0 3px rgba(240, 165, 0, 0.16);
+}
+
+.hero__stats li {
+  transition:
+    transform var(--motion-standard) var(--ease-smooth),
+    background-color var(--motion-standard) ease,
+    border-color var(--motion-standard) ease;
+  border: 1px solid transparent;
+}
+
+.hero__stats li:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.095);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+@keyframes hero-orb {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-20px, 16px, 0) scale(1.08); }
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content blocks and panels gain subtle depth without becoming card-heavy. */
+.panel,
+.content-block,
+.feature-card,
+.pick,
+.filter-bar,
+.table-scroll,
+.buy-box {
+  transition:
+    border-color var(--motion-standard) ease,
+    box-shadow var(--motion-standard) var(--ease-smooth),
+    transform var(--motion-standard) var(--ease-smooth);
+}
+
+.panel:hover,
+.content-block:hover,
+.feature-card:hover,
+.pick:hover {
+  border-color: rgba(31, 111, 95, 0.22);
+}
+
+.buy-box {
+  box-shadow:
+    0 18px 40px -30px rgba(16, 26, 23, 0.34),
+    var(--shadow-sm);
+}
+
+/* Filters and form controls should feel responsive, not static. */
+.filter-chip,
+.select,
+.field input[type='text'],
+.field input[type='email'],
+.field input[type='search'],
+.field select,
+.field textarea {
+  transition:
+    transform var(--motion-fast) var(--ease-smooth),
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
+}
+
+.filter-chip:hover {
+  transform: translateY(-1px);
+}
+
+.filter-chip[aria-pressed='true'] {
+  box-shadow: 0 8px 16px -12px rgba(15, 61, 51, 0.55);
+}
+
+/* Comparison rows gently respond to hover so dense tables remain scannable. */
+.cmp-table tbody tr:not(.cmp-row--highlight) td,
+.cmp-table tbody tr:not(.cmp-row--highlight) th {
+  transition: background-color var(--motion-fast) ease;
+}
+
+.cmp-table tbody tr:hover:not(.cmp-row--highlight) td {
+  background: #f9fbfa;
+}
+
+.footer__list li a,
+.social-btn {
+  transition:
+    transform var(--motion-fast) var(--ease-smooth),
+    background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease;
+}
+
+.footer__list li a:hover {
+  transform: translateX(3px);
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Page headers get a little more visual depth while staying restrained. */
+.page-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  width: 22rem;
+  height: 22rem;
+  right: -10rem;
+  top: -13rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 165, 0, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.page-header > .container {
+  position: relative;
+  z-index: 1;
+  animation: hero-enter 620ms var(--ease-emphasis) both;
+}
+
+/* Medium motion is the default direction for this brand. */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+
+  .grid > .card.card--relative,
+  .hero__inner,
+  .page-header > .container {
+    animation: none;
+  }
+}
