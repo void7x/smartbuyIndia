@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CategoryIcon } from './Icons.jsx';
 import { assetUrl } from '../utils/seo.js';
 import { cx, hashHue } from '../utils/format.js';
@@ -92,8 +93,9 @@ export default function ProductImage({
 }) {
   const src = product?.image;
   const useRealImage = src && !isPlaceholderPath(src) && !product?.imagePlaceholder;
+  const [imageFailed, setImageFailed] = useState(false);
 
-  if (!useRealImage) {
+  if (!useRealImage || imageFailed) {
     return <PlaceholderArt product={product} label={label} className={className} />;
   }
 
@@ -106,6 +108,8 @@ export default function ProductImage({
       height="300"
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
+      referrerPolicy="no-referrer"
+      onError={() => setImageFailed(true)}
       {...(sizes ? { sizes } : {})}
     />
   );
