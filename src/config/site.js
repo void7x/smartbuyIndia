@@ -52,6 +52,9 @@ export const LEGAL_CITY = 'Mumbai, Maharashtra, India';
 export const LOCALE = 'en-IN';
 export const CURRENCY = 'INR';
 
+/** Exact disclosure wording required by the Amazon Associates Operating Agreement. */
+export const AMAZON_ASSOCIATE_DISCLOSURE = 'As an Amazon Associate I earn from qualifying purchases.';
+
 /** Launch year, used in the footer copyright. */
 export const LAUNCH_YEAR = 2026;
 
