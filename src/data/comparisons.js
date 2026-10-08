@@ -386,65 +386,137 @@ const comparisonData = [
     slug: 'philips-bt1232-vs-xiaomi-2c-vs-vega-s3',
     categorySlug: 'beauty-grooming',
     heroTitle: 'Which of these three beard trimmers fits your routine?',
-    metaDescription: 'A concise comparison of Philips BT1232/18, Xiaomi Beard Trimmer 2C and Vega SmartOne S3 on range, charging, runtime and practical use cases.',
-    intro: 'These three models cover different buying priorities rather than three versions of the same answer: Philips keeps the setup simple, Xiaomi focuses on wide length control, and Vega adds speed modes and a longer stated runtime.',
+    metaDescription:
+      'Compare Philips BT1232/18, Xiaomi Beard Trimmer 2C and Vega SmartOne S3 on trimming range, charging, runtime, cleaning and practical use cases.',
+    intro:
+      'These three trimmers solve different buying problems. Philips keeps the setup simple for short beard styles; Xiaomi gives you a broad 0.5–20 mm range with Type-C charging; Vega offers a similar range plus three speed modes, cord/cordless use and a longer manufacturer-stated runtime.',
     productSlugs: ['philips-bt1232-18', 'xiaomi-beard-trimmer-2c', 'vega-smartone-s3'],
     guideSlug: 'how-to-choose-beard-trimmer-india',
-    howToRead: 'Each label describes a use case rather than an overall winner. Specifications come from manufacturer sources; prices are omitted until manually verified on Amazon.in.',
+    howToRead:
+      'There is no overall winner here. Use the verdict row to match a model to your routine, then use the rows below to check the specific trade-offs. Product specifications are taken from manufacturer sources; live prices are deliberately omitted until manually verified on Amazon.in.',
     verdicts: {
-      'philips-bt1232-18': { label: 'Simple short-beard setup', why: 'Best fit when you do not need a wide length range.' },
-      'xiaomi-beard-trimmer-2c': { label: 'Wide length control', why: '40 settings and 0.5 mm precision across two combs.' },
-      'vega-smartone-s3': { label: 'Feature-heavy option', why: 'Adds three speed modes, cord/cordless use and a longer stated runtime.' },
+      'philips-bt1232-18': {
+        label: 'Simplest short-beard setup',
+        why: 'Philips lists 3 mm and 7 mm beard combs plus a SkinProtect comb, making this the least complex option when you do not need a wide length range.',
+      },
+      'xiaomi-beard-trimmer-2c': {
+        label: 'Best fit for wide length control',
+        why: 'Xiaomi lists 40 settings from 0.5–20 mm across two combs, with 0.5 mm precision and Type-C charging.',
+      },
+      'vega-smartone-s3': {
+        label: 'Best fit for extra controls',
+        why: 'Vega lists 40 settings from 0.5–20 mm, three speed modes, cord/cordless use and up to 160 minutes of runtime.',
+      },
     },
     rows: [
-      { id: 'range', label: 'Length range', highlight: true, values: [
-        { value: '3 mm + 7 mm combs' },
-        { value: '0.5–20 mm', note: '40 settings; two combs' },
-        { value: '0.5–20 mm', note: '40 settings; two combs' },
-      ] },
-      { id: 'precision', label: 'Adjustment', values: [
-        { value: '1 mm step size' },
-        { value: '0.5 mm precision' },
-        { value: '40 settings' },
-      ] },
-      { id: 'runtime', label: 'Stated runtime', values: [
-        { value: 'Up to 30 min', note: '8 hr full charge' },
-        { value: 'Up to 90 min', note: 'About 2 hr charge' },
-        { value: 'Up to 160 min', note: 'About 90 min charge' },
-      ] },
-      { id: 'charging', label: 'Charging', values: [
-        { value: 'USB-A', note: 'No adapter included' },
-        { value: 'USB Type-C', note: 'No adapter included' },
-        { value: 'USB Type-C', note: 'Cord/cordless use' },
-      ] },
-      { id: 'cleaning', label: 'Water / cleaning claim', values: [
-        { value: 'Rinseable attachments' },
-        { value: 'Washable attachments' },
-        { value: 'IPX7 claim', note: 'Manufacturer stated' },
-      ] },
-      { id: 'warranty', label: 'Warranty', values: [
-        { value: '2 years' },
-        { value: '1 year' },
-        { value: '1 year' },
-      ] },
+      {
+        id: 'range',
+        label: 'Length range',
+        highlight: true,
+        values: [
+          { value: '3 mm + 7 mm combs', note: 'Also includes a SkinProtect comb for zero-trim use' },
+          { value: '0.5–20 mm', note: '40 settings across two combs' },
+          { value: '0.5–20 mm', note: '40 settings across two combs' },
+        ],
+      },
+      {
+        id: 'precision',
+        label: 'Adjustment',
+        values: [
+          { value: '1 mm steps' },
+          { value: '0.5 mm precision' },
+          { value: '40 settings' },
+        ],
+      },
+      {
+        id: 'blade',
+        label: 'Blade system',
+        values: [
+          { value: 'Stainless steel', note: 'Non-scratching teeth; self-sharpening' },
+          { value: 'Stainless steel', note: 'Non-scratching teeth' },
+          { value: 'Titanium', note: 'Vega describes the blade as skin-friendly' },
+        ],
+      },
+      {
+        id: 'runtime',
+        label: 'Stated runtime',
+        values: [
+          { value: 'Up to 30 min', note: '8 hr full charge' },
+          { value: 'Up to 90 min', note: 'About 2 hr charge' },
+          { value: 'Up to 160 min', note: 'About 90 min charge' },
+        ],
+      },
+      {
+        id: 'charging',
+        label: 'Charging',
+        values: [
+          { value: 'USB-A', note: 'No adapter included' },
+          { value: 'USB Type-C', note: 'No adapter included' },
+          { value: 'USB Type-C', note: 'Cord and cordless use' },
+        ],
+      },
+      {
+        id: 'water-cleaning',
+        label: 'Water / cleaning claim',
+        values: [
+          { value: 'Rinseable attachments', note: 'Philips says to dry them before reattaching' },
+          { value: 'Washable attachments', note: 'Xiaomi does not describe the whole device as waterproof' },
+          { value: 'IPX7 waterproof', note: 'Manufacturer claim; follow Vega care instructions' },
+        ],
+      },
+      {
+        id: 'warranty',
+        label: 'Warranty',
+        values: [
+          { value: '2 years' },
+          { value: '1 year' },
+          { value: '1 year' },
+        ],
+      },
+      {
+        id: 'controls',
+        label: 'Extra controls',
+        values: [
+          { value: 'Simple setup', note: 'No speed modes listed' },
+          { value: 'Safety lock', note: 'Cordless use' },
+          { value: 'Smart Memory + 3 speed modes', note: 'Eco, Pro and Max' },
+        ],
+      },
     ],
     editorialConclusion: {
       heading: 'How to decide',
       body: [
-        'Choose Philips when you want a simpler short-beard setup and value the longer stated warranty more than a wide range.',
-        'Choose Xiaomi when 0.5–20 mm control and Type-C charging are the main reasons you are buying a new trimmer.',
-        'Choose Vega when the extra speed modes, cord/cordless use and longer stated runtime are genuinely useful to your routine. Its SmartTrim/AI language is a manufacturer claim, not an independent performance score.',
+        'Choose Philips when you mostly maintain a short beard and prefer a simpler comb setup. Its 3 mm and 7 mm beard combs cover the core lengths without making you manage a 40-setting dial.',
+        'Choose Xiaomi when length flexibility matters most. Its 0.5–20 mm range, 0.5 mm precision and Type-C charging make it the most straightforward fit for someone who changes beard length regularly.',
+        'Choose Vega when the extra controls are genuinely useful to you. The SmartOne S3 adds three speed modes, Smart Memory, cord/cordless use and a longer manufacturer-stated runtime. Its Smart Memory/feature claims are manufacturer specifications, not independent performance-test results.',
       ],
     },
     faqs: [
-      { question: 'Which one has the widest length range?', answer: 'Xiaomi Beard Trimmer 2C and Vega SmartOne S3 both list 0.5–20 mm across two combs.' },
-      { question: 'Which one has the longest stated runtime?', answer: 'Vega lists up to 160 minutes, followed by Xiaomi at up to 90 minutes and Philips at up to 30 minutes.' },
-      { question: 'Which one should I buy for a simple short beard?', answer: 'Philips is the simplest fit on paper because it uses a smaller set of beard comb lengths instead of a 40-setting wide-range system.' },
+      {
+        question: 'Which trimmer has the widest length range?',
+        answer:
+          'Xiaomi Beard Trimmer 2C and Vega SmartOne S3 both list 0.5–20 mm across two combs, with 40 settings.',
+      },
+      {
+        question: 'Which one has the longest stated runtime?',
+        answer:
+          'Vega lists up to 160 minutes, followed by Xiaomi at up to 90 minutes and Philips at up to 30 minutes. These are manufacturer-stated figures, not independent battery tests.',
+      },
+      {
+        question: 'Which one is the simplest choice for a short beard?',
+        answer:
+          'Philips is the simplest fit on paper because its supplied beard combs are 3 mm and 7 mm, rather than a wide 40-setting adjustment system.',
+      },
+      {
+        question: 'Are the washable or waterproof claims the same on all three?',
+        answer:
+          'No. Philips lists rinseable attachments, Xiaomi lists washable attachments, and Vega lists an IPX7 waterproof claim. Those terms are not interchangeable, so follow each manufacturer’s care instructions.',
+      },
     ],
     updatedAt: '2026-10-08',
     isDemo: false,
     status: 'draft',
-  },
+  }
 ];
 
 /* -------------------------------------------------------------------------- */
