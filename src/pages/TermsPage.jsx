@@ -6,7 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.jsx';
 import AnchorLink from '../components/AnchorLink.jsx';
 import { IS_DEMO_CONTENT } from '../config/content.js';
 
-const UPDATED = 'Draft — review, date and have checked by a qualified professional before launch';
+const UPDATED = 'Staging draft — 8 October 2026; final entity, address and legal review required before launch';
 
 /** /terms */
 export default function TermsPage() {
@@ -75,9 +75,9 @@ export default function TermsPage() {
           <h2 id="acceptance">1. Acceptance of these terms</h2>
           <p>
             By accessing or using {SITE_NAME} you agree to these terms. If you do not agree with any
-            part of them, please do not use the site. You must be at least 18 years old, or the age of
-            majority in your jurisdiction, to enter into a contract with a retailer you reach through
-            our links.
+            part of them, please do not use the site. Any purchase you make after leaving this site is
+            subject to the retailer's own terms, including any age or eligibility requirements that apply
+            to that transaction.
           </p>
 
           <h2 id="what-we-are">2. What SmartBuyIndia is</h2>
@@ -201,11 +201,10 @@ export default function TermsPage() {
             content, or any purchase you make with a third party after leaving the site.
           </p>
           <p>
-            Our total aggregate liability relating to the site will not exceed the greater of ₹1,000 or
-            the amount of commission we actually received that is attributable to your use of the site
-            in the three months preceding the event giving rise to the claim. Nothing in these terms
-            excludes or limits liability that cannot lawfully be excluded or limited under Indian law,
-            including liability for fraud or death or personal injury caused by negligence.
+            To the maximum extent permitted by applicable law, our liability arising from your use of the
+            site or reliance on its content is limited to losses that are lawfully capable of being limited.
+            Nothing in these terms excludes or limits any liability, consumer right or remedy that
+            applicable Indian law does not permit us to exclude or limit.
           </p>
 
           <h2 id="indemnity">12. Indemnity</h2>
