@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import ProductImage from './ProductImage.jsx';
 import AmazonButton from './AmazonButton.jsx';
+import DisclosureNotice from './DisclosureNotice.jsx';
 import { getProductBySlug } from '../data/products.js';
 import { formatPrice, formatDate } from '../utils/format.js';
 import { SwapIcon } from './Icons.jsx';
@@ -140,6 +141,10 @@ export default function ComparisonTable({ comparison, placement = 'compare-table
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div style={{ marginTop: '12px' }}>
+        <DisclosureNotice compact />
       </div>
 
       {!showPriceRow && (
