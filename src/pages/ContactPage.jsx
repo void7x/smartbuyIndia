@@ -120,7 +120,7 @@ export default function ContactPage() {
       </div>
 
       <div className="container section">
-        <div className="grid grid-2" style={{ alignItems: 'start' }}>
+        <div className="grid grid-2 contact-layout" style={{ alignItems: 'start' }}>
           {/* ------------------------------------------------------------ Form */}
           <div className="content-block">
             <h2 style={{ fontSize: 'var(--fs-xl)', marginBottom: '8px' }}>Send a message</h2>

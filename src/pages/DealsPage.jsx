@@ -104,6 +104,7 @@ export default function DealsPage() {
         </div>
 
         {verifiedDeals === 0 && (
+          <div className="deals-empty-wrap">
           <EmptyState
             icon={<TagIcon width={46} height={46} />}
             title="No verified deals published right now"
@@ -119,6 +120,7 @@ export default function DealsPage() {
               observed, who checked it, the date, the offer type, and any terms that apply.
             </p>
           </EmptyState>
+          </div>
         )}
 
         {/* Sections */}

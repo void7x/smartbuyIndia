@@ -4268,3 +4268,133 @@ body {
     animation: none;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   P2 special-page polish
+   -------------------------------------------------------------------------- */
+.not-found-hero {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:28px;
+  align-items:center;
+  padding:30px;
+  margin-bottom:22px;
+  border:1px solid var(--brand-100);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(240,165,0,.12), transparent 28%),
+    linear-gradient(135deg,var(--brand-50),var(--surface));
+  box-shadow:var(--shadow-sm);
+}
+.not-found-hero__visual {
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:126px;
+  height:126px;
+  border-radius:30px;
+  background:var(--brand-900);
+  box-shadow:var(--shadow-md);
+  transform:rotate(-3deg);
+}
+.not-found-hero__visual span {
+  position:absolute;
+  right:-12px;
+  bottom:-9px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--accent-500);
+  color:#3a2600;
+  font-size:11px;
+  font-weight:900;
+  box-shadow:var(--shadow-sm);
+}
+.not-found-hero__copy h1 {
+  max-width:15ch;
+  font-size:clamp(2rem,4vw,3.2rem);
+  letter-spacing:-.045em;
+  margin-bottom:10px;
+}
+.not-found-hero__copy > p:not(.eyebrow) {
+  max-width:60ch;
+  color:var(--ink-600);
+  margin-bottom:18px;
+}
+
+.contact-layout > .content-block {
+  box-shadow:var(--shadow-sm);
+}
+.contact-layout > .stack > * {
+  transition:transform var(--motion-standard) var(--ease-emphasis), box-shadow var(--motion-standard) var(--ease-smooth);
+}
+.contact-layout > .stack > .panel:hover,
+.contact-layout > .stack > .callout:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+}
+.contact-layout .form-status {
+  animation: special-fade-in 260ms var(--ease-smooth) both;
+}
+@keyframes special-fade-in {
+  from { opacity:0; transform:translateY(5px); }
+  to { opacity:1; transform:none; }
+}
+
+.deals-empty-wrap {
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+}
+.deals-empty-wrap::before,
+.deals-empty-wrap::after {
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  border:1px solid var(--brand-100);
+}
+.deals-empty-wrap::before {
+  width:180px;
+  height:180px;
+  right:-70px;
+  top:-82px;
+}
+.deals-empty-wrap::after {
+  width:110px;
+  height:110px;
+  left:-55px;
+  bottom:-48px;
+  border-color:#f0dcae;
+}
+.deals-empty-wrap .empty-state {
+  position:relative;
+  z-index:1;
+  background:linear-gradient(135deg,var(--surface),var(--brand-50));
+}
+
+.legal h2 {
+  scroll-margin-top:calc(var(--header-h) + 18px);
+}
+.legal h2::after {
+  content:'';
+  display:block;
+  width:28px;
+  height:2px;
+  margin-top:9px;
+  border-radius:2px;
+  background:var(--accent-500);
+}
+
+@media (max-width: 640px) {
+  .not-found-hero {
+    grid-template-columns:1fr;
+    padding:22px;
+  }
+  .not-found-hero__visual {
+    width:94px;
+    height:94px;
+    border-radius:24px;
+  }
+  .not-found-hero__copy h1 { max-width:none; }
+}
