@@ -182,8 +182,6 @@ export default function PrivacyPage() {
             Because we hold very little personal data about you, many requests can be handled simply. Where
             the Digital Personal Data Protection Act, 2023 or other applicable Indian law gives you rights
             over your personal data, we will handle those requests according to the law in force at the time.
-             To the extent the Digital Personal Data Protection Act, 2023 and other applicable
-            Indian law give you rights over your personal data, you may at any time:
           </p>
           <ul>
             <li>ask what personal data we hold about you (in practice: any message you sent us);</li>
@@ -210,9 +208,9 @@ export default function PrivacyPage() {
           <h2 id="changes">Changes to this policy</h2>
           <p>
             If we add analytics, advertising, a newsletter, comments or any other feature that changes
-            what data is handled, we will update this page first and change the “last updated” date
-            above. Continued use of the site after a change is published means you accept the updated
-            policy.
+            what data is handled, we will update this page and the applicable notice, and change the
+            “last updated” date above. Where the law requires notice or consent before the new processing
+            begins, we will provide it before that processing starts.
           </p>
 
           <h2 id="contact-privacy">Contact</h2>
