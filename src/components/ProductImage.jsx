@@ -104,8 +104,6 @@ export default function ProductImage({
       className={className}
       src={assetUrl(src)}
       alt={product?.imageAlt || product?.name || ''}
-      width="400"
-      height="300"
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
       referrerPolicy="no-referrer"

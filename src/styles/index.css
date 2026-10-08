@@ -1393,13 +1393,18 @@ hr {
   box-shadow: var(--shadow-sm);
 }
 
-.product-hero__media > img,
+.product-hero__media > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: var(--sp-4);
+  box-sizing: border-box;
+}
+
 .product-hero__media > svg {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  padding: var(--sp-4);
+  height: auto;
 }
 
 .product-hero__media-caption {
