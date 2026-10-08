@@ -25,7 +25,7 @@ export default function DisclosureNotice({
         <InfoIcon />
         <span>
           <strong>Affiliate disclosure:</strong> some links on SmartBuyIndia are affiliate links.
-          If you buy through one, we may earn a qualifying commission at no extra cost to you. <strong>${AMAZON_ASSOCIATE_DISCLOSURE}</strong>
+          If you buy through one, we may earn a qualifying commission at no extra cost to you. <strong>{AMAZON_ASSOCIATE_DISCLOSURE}</strong>
           {withLink && (
             <>
               {' '}
@@ -70,9 +70,9 @@ export function RetailerNote({ className = '' }) {
   return (
     <p className={cx('inline-note', className)}>
       SmartBuyIndia is an independent product research website and is not owned or operated by
-      Amazon. Product availability, pricing and offers are set by the retailer and can change at any
-      time. We are a participant in the Amazon Associates programme, which provides a means for us to
-      earn fees by linking to Amazon.in.
+      Amazon. <strong>{AMAZON_ASSOCIATE_DISCLOSURE}</strong> Product availability, pricing and offers
+      are set by the retailer and can change at any time. We are a participant in the Amazon Associates
+      programme, which provides a means for us to earn fees by linking to Amazon.in.
     </p>
   );
 }
