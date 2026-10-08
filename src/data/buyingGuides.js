@@ -1,3 +1,5 @@
+import { IS_DEMO_CONTENT } from '../config/content.js';
+
 /**
  * ============================================================================
  * BUYING GUIDES  —  ⚠ DEMO DATA LAYER
@@ -682,15 +684,17 @@ export const buyingGuides = [
 /* Lookups                                                                    */
 /* -------------------------------------------------------------------------- */
 
-export const publishedGuides = buyingGuides.filter(
-  (g) => g.status === 'published' || g.status === 'draft',
-);
+const visibleGuides = IS_DEMO_CONTENT
+  ? buyingGuides
+  : buyingGuides.filter((g) => g.status === 'published' && !g.isDemo);
 
-export const getGuideBySlug = (slug) => buyingGuides.find((g) => g.slug === slug) || null;
+export const publishedGuides = visibleGuides;
+
+export const getGuideBySlug = (slug) => visibleGuides.find((g) => g.slug === slug) || null;
 export const getGuidesByCategory = (categorySlug) =>
-  buyingGuides.filter((g) => g.categorySlug === categorySlug);
+  visibleGuides.filter((g) => g.categorySlug === categorySlug);
 
-export const guidesByRecency = [...buyingGuides].sort((a, b) =>
+export const guidesByRecency = [...visibleGuides].sort((a, b) =>
   String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')),
 );
 
