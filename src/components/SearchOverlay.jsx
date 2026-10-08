@@ -2,7 +2,8 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { search, RESULT_TYPE_LABELS, suggestedSearches } from '../utils/search.js';
 import { trackSearch } from '../utils/analytics.js';
-import { CloseIcon, SearchIcon, ArrowRight } from './Icons.jsx';
+import { Link } from 'react-router-dom';
+import { CloseIcon, SearchIcon, ArrowRight, GridIcon, ScaleIcon, BookIcon } from './Icons.jsx';
 
 const GROUP_ORDER = ['product', 'guide', 'category', 'comparison'];
 const MAX_PER_GROUP = 5;
@@ -169,19 +170,35 @@ export default function SearchOverlay({ open, onClose }) {
 
         <div className="search-panel__body" id="search-results" role="listbox" aria-label="Search results">
           {!query.trim() && (
-            <div className="search-group">
-              <p className="search-group__title">Popular searches</p>
-              <div className="suggestion-chips">
+            <>
+              <div className="search-landing">
+                <div>
+                  <span className="search-landing__eyebrow">Search with intent</span>
+                  <h2>What are you shopping for?</h2>
+                  <p>Try a product, a use case, or a question. We'll surface the closest research we've published.</p>
+                </div>
+                <span className="search-landing__shortcut"><kbd>/</kbd> quick search</span>
+              </div>
+
+              <div className="search-group">
+                <p className="search-group__title">Popular starting points</p>
+                <div className="suggestion-chips suggestion-chips--large">
                 {suggestedSearches.map((term) => (
                   <button type="button" key={term} onClick={() => setQuery(term)}>
                     {term}
                   </button>
                 ))}
               </div>
+              </div>
+              <div className="search-start-links">
+                <LinkStart href="/categories" label="Browse categories" />
+                <LinkStart href="/compare" label="Compare products" />
+                <LinkStart href="/buying-guides" label="Read buying guides" />
+              </div>
               <p className="inline-note" style={{ marginTop: '16px' }} id="search-help">
                 Search runs entirely in your browser. Nothing you type is sent to a server.
               </p>
-            </div>
+            </>
           )}
 
           {query.trim() && flat.length === 0 && (
@@ -251,5 +268,20 @@ export default function SearchOverlay({ open, onClose }) {
         )}
       </div>
     </div>
+  );
+}
+
+
+function LinkStart({ href, label }) {
+  const icon =
+    href === '/compare' ? <ScaleIcon width={15} height={15} /> :
+    href === '/buying-guides' ? <BookIcon width={15} height={15} /> :
+    <GridIcon width={15} height={15} />;
+
+  return (
+    <Link to={href} className="search-start-link">
+      <span>{icon}{label}</span>
+      <ArrowRight width={13} height={13} />
+    </Link>
   );
 }

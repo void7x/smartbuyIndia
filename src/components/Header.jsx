@@ -11,9 +11,9 @@ import { trackInternalClick } from '../utils/analytics.js';
 /** Primary navigation. Add a route here and it appears on desktop + mobile. */
 export const NAV_LINKS = [
   { label: 'Categories', to: '/categories' },
+  { label: 'Compare', to: '/compare' },
   { label: 'Buying Guides', to: '/buying-guides' },
   { label: 'Deals', to: '/deals' },
-  { label: 'About', to: '/about' },
 ];
 
 function isActive(prefix, pathname) {

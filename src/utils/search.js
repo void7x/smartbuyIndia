@@ -226,10 +226,10 @@ export const RESULT_TYPE_LABELS = {
 
 /** Popular / suggested searches shown before the user types anything. */
 export const suggestedSearches = [
-  'air fryer',
-  'wireless earbuds',
+  'beard trimmer',
   'electric kettle',
   'study lamp',
-  'resistance bands',
-  'laptop stand',
+  'air fryer',
+  'power bank for travel',
+  'hair dryer under 2000',
 ];
