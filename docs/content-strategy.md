@@ -106,7 +106,55 @@ Before a page becomes published:
 - correction/report route exists;
 - the editor can explain why the page is worth visiting instead of going directly to Amazon.
 
-## 13. Deliberately not doing yet
+## 13. Visual-first and concise content standard
+SmartBuyIndia is a buying-decision product, not a long-form magazine. Pages should be designed for fast scanning on mobile and desktop.
+
+The core experience is:
+See → understand → compare → decide → buy.
+
+Default rules:
+- Put the useful answer near the top; do not make the reader work through a long introduction.
+- Prefer short sections, compact paragraphs, bullet-sized facts, comparison cards and small tables over dense prose.
+- Use product imagery where it materially helps identify or compare a product.
+- Every product card should prioritize: image, product/model name, 3–6 important specs, best-fit use case, key limitation, and a clear retailer CTA when a verified affiliate link exists.
+- Use “Good for” and “Skip if” labels to communicate fit quickly.
+- Move detailed methodology, source notes and secondary explanations lower on the page or into collapsible sections where the UI supports it.
+- Do not add paragraphs merely to hit a word-count target.
+- A guide should usually be concise enough to skim in a few minutes; expand only where extra detail changes the buying decision.
+- Pillar guides can use deeper explanation than comparison cards, but the information hierarchy must remain scannable.
+- Use visual hierarchy to distinguish facts, decisions, caveats and CTAs.
+- Avoid carousels or decorative motion when they slow access to the key buying information.
+
+Suggested article rhythm:
+1. Quick answer / what matters.
+2. Visual buying criteria.
+3. A few relevant product examples.
+4. Short decision/comparison section.
+5. Buyer checklist.
+6. FAQ.
+7. Disclosure, research/update details and correction route.
+
+### Product imagery rules
+Product images are encouraged, but only when SmartBuyIndia has a lawful and permitted source for the asset.
+Do not scrape or republish random Amazon seller photography.
+Preferred sources, subject to the applicable terms and permissions:
+- Amazon-approved affiliate/product advertising image mechanisms.
+- Manufacturer assets that the site is permitted to use.
+- Original SmartBuyIndia photography for products the team actually photographs.
+Image choices must represent the exact product/model being discussed.
+Do not edit product images in a way that changes the apparent product, included accessories or specifications.
+Add meaningful alt text that identifies the product or the informational purpose of the image; do not stuff keywords.
+
+### Mobile-first priority
+Because many Indian shoppers will arrive from mobile devices:
+- Put core product facts before long explanatory text.
+- Keep tables readable on small screens.
+- Keep primary CTA buttons visually obvious without making them deceptive.
+- Avoid requiring horizontal scrolling for essential information when a card or stacked layout can communicate the same choice.
+
+Concise does not mean thin. Every shortened page still needs original analysis, evidence, important caveats and enough information for a reader to make the intended decision.
+
+## 14. Deliberately not doing yet
 No mass product import.
 No automatic Amazon catalogue scraping.
 No AI-generated page farm.
@@ -116,11 +164,11 @@ No Google indexing of demo content.
 No paid SEO traffic yet.
 No broad social-content production before the first useful articles exist.
 
-## 14. Measurement loop
+## 15. Measurement loop
 For each cluster, track Search impressions, clicks, queries, organic landing pages, outbound Amazon clicks, click-through rate, qualifying purchases, revenue per page, and pages with impressions but weak clicks or clicks but weak conversion.
 The publishing queue changes from evidence, not from a rigid calendar.
 
-## 15. Current external guidance
+## 16. Current external guidance
 Amazon India Associates currently requires clear disclosure and identification as an Amazon Associate, prohibits inaccurate or misleading product claims, and says the site should provide robust original content for application review.
 Google currently emphasizes people-first content, original information/analysis, useful depth, clear expertise/background and substantial value beyond what already exists elsewhere.
 These sources should be re-checked before public launch because program rules and search guidance can change.
