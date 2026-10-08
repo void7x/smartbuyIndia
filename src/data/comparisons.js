@@ -516,7 +516,7 @@ const comparisonData = [
     updatedAt: '2026-10-08',
     isDemo: false,
     status: 'draft',
-  }
+  },
   {
     id: 'cmp-philips-bhd318-vs-havells-hd3151-vs-agaro-hd1120',
     title: 'Philips BHD318/00 vs Havells HD3151 vs AGARO HD-1120',

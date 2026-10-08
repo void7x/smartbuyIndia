@@ -1046,7 +1046,7 @@ const productData = [
     ],
     considerations: [
       'Check the socket requirements before ordering; AGARO explicitly lists a 16A plug for the current model.',
-      'AGARO's current official listing showed the product as sold out at the time checked, so Amazon availability should be verified before publication.',
+      'AGARO current official listing showed the product as sold out at the time checked, so Amazon availability should be verified before publication.',
     ],
     whyWePickedIt: 'It creates the opposite end of the shortlist from Havells: more power and a fuller attachment kit for buyers who actually intend to style rather than simply dry.',
     price: null,
