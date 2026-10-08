@@ -84,6 +84,10 @@ export function tagExistingUrl(rawUrl, tag, subId) {
 export function generateAffiliateUrl(product, options = {}) {
   if (!product) return PLACEHOLDER_AFFILIATE_URL;
 
+  // Production safeguard: research records only become clickable after the
+  // Amazon listing has been manually verified. Demo/staging records stay inert.
+  if (!product.affiliateVerified) return PLACEHOLDER_AFFILIATE_URL;
+
   const campaign = options.campaign || DEFAULT_CAMPAIGN;
   const tag = getTrackingId(campaign);
   const subId = RETAILER.subId || null;
