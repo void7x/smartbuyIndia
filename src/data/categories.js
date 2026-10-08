@@ -12,7 +12,7 @@ import { IS_DEMO_CONTENT } from '../config/content.js';
  * layout review. Replace with your real editorial text before launch.
  */
 
-export const categories = [
+const categoryData = [
   {
     id: 'cat-home-kitchen',
     name: 'Home & Kitchen',
@@ -144,6 +144,10 @@ export const categories = [
     status: 'demo',
   },
 ];
+
+export const categories = IS_DEMO_CONTENT
+  ? categoryData
+  : categoryData.filter((c) => c.status === 'published');
 
 /** Categories that should appear in navigation and the sitemap. */
 export const liveCategories = categories.filter(
