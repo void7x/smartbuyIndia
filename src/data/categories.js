@@ -1,3 +1,5 @@
+import { IS_DEMO_CONTENT } from '../config/content.js';
+
 /**
  * ============================================================================
  * CATEGORIES  —  data-driven taxonomy
@@ -144,10 +146,12 @@ export const categories = [
 ];
 
 /** Categories that should appear in navigation and the sitemap. */
-export const liveCategories = categories.filter((c) => !c.comingSoon);
+export const liveCategories = categories.filter(
+  (c) => !c.comingSoon && (IS_DEMO_CONTENT || c.status === 'published'),
+);
 
 export const getCategoryBySlug = (slug) =>
-  categories.find((c) => c.slug === slug) || null;
+  liveCategories.find((c) => c.slug === slug) || null;
 
 export const getCategoryName = (slug) => getCategoryBySlug(slug)?.name || slug;
 
