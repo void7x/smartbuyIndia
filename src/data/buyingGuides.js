@@ -701,6 +701,7 @@ const guideData = [
       { name: 'Warranty', why: 'Important for a small appliance you may use regularly.', typical: '1–2 years among these three models' },
     ],
     productSlugs: ['philips-bt1232-18', 'xiaomi-beard-trimmer-2c', 'vega-smartone-s3'],
+    comparisonSlug: 'philips-bt1232-vs-xiaomi-2c-vs-vega-s3',
     picks: [
       { productSlug: 'philips-bt1232-18', label: 'Good for a simple short-beard routine', why: 'The simplest setup of the three: 3 mm and 7 mm combs, 30-minute runtime and a 2-year warranty.', watchOuts: ['Skip it if you need a broad 0.5–20 mm range or faster full charging.'] },
       { productSlug: 'xiaomi-beard-trimmer-2c', label: 'Good for wide length control', why: '40 settings, 0.5 mm precision, Type-C charging and up to 90 minutes of stated runtime.', watchOuts: ['The full 0.5–20 mm range uses two combs, and the adapter is not included.'] },
