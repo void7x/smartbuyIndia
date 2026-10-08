@@ -380,6 +380,71 @@ const comparisonData = [
     isDemo: true,
     status: 'draft',
   },
+  {
+    id: 'cmp-philips-bt1232-vs-xiaomi-2c-vs-vega-s3',
+    title: 'Philips BT1232/18 vs Xiaomi Beard Trimmer 2C vs Vega SmartOne S3',
+    slug: 'philips-bt1232-vs-xiaomi-2c-vs-vega-s3',
+    categorySlug: 'beauty-grooming',
+    heroTitle: 'Which of these three beard trimmers fits your routine?',
+    metaDescription: 'A concise comparison of Philips BT1232/18, Xiaomi Beard Trimmer 2C and Vega SmartOne S3 on range, charging, runtime and practical use cases.',
+    intro: 'These three models cover different buying priorities rather than three versions of the same answer: Philips keeps the setup simple, Xiaomi focuses on wide length control, and Vega adds speed modes and a longer stated runtime.',
+    productSlugs: ['philips-bt1232-18', 'xiaomi-beard-trimmer-2c', 'vega-smartone-s3'],
+    guideSlug: 'how-to-choose-beard-trimmer-india',
+    howToRead: 'Each label describes a use case rather than an overall winner. Specifications come from manufacturer sources; prices are omitted until manually verified on Amazon.in.',
+    verdicts: {
+      'philips-bt1232-18': { label: 'Simple short-beard setup', why: 'Best fit when you do not need a wide length range.' },
+      'xiaomi-beard-trimmer-2c': { label: 'Wide length control', why: '40 settings and 0.5 mm precision across two combs.' },
+      'vega-smartone-s3': { label: 'Feature-heavy option', why: 'Adds three speed modes, cord/cordless use and a longer stated runtime.' },
+    },
+    rows: [
+      { id: 'range', label: 'Length range', highlight: true, values: [
+        { value: '3 mm + 7 mm combs' },
+        { value: '0.5–20 mm', note: '40 settings; two combs' },
+        { value: '0.5–20 mm', note: '40 settings; two combs' },
+      ] },
+      { id: 'precision', label: 'Adjustment', values: [
+        { value: '1 mm step size' },
+        { value: '0.5 mm precision' },
+        { value: '40 settings' },
+      ] },
+      { id: 'runtime', label: 'Stated runtime', values: [
+        { value: 'Up to 30 min', note: '8 hr full charge' },
+        { value: 'Up to 90 min', note: 'About 2 hr charge' },
+        { value: 'Up to 160 min', note: 'About 90 min charge' },
+      ] },
+      { id: 'charging', label: 'Charging', values: [
+        { value: 'USB-A', note: 'No adapter included' },
+        { value: 'USB Type-C', note: 'No adapter included' },
+        { value: 'USB Type-C', note: 'Cord/cordless use' },
+      ] },
+      { id: 'cleaning', label: 'Water / cleaning claim', values: [
+        { value: 'Rinseable attachments' },
+        { value: 'Washable attachments' },
+        { value: 'IPX7 claim', note: 'Manufacturer stated' },
+      ] },
+      { id: 'warranty', label: 'Warranty', values: [
+        { value: '2 years' },
+        { value: '1 year' },
+        { value: '1 year' },
+      ] },
+    ],
+    editorialConclusion: {
+      heading: 'How to decide',
+      body: [
+        'Choose Philips when you want a simpler short-beard setup and value the longer stated warranty more than a wide range.',
+        'Choose Xiaomi when 0.5–20 mm control and Type-C charging are the main reasons you are buying a new trimmer.',
+        'Choose Vega when the extra speed modes, cord/cordless use and longer stated runtime are genuinely useful to your routine. Its SmartTrim/AI language is a manufacturer claim, not an independent performance score.',
+      ],
+    },
+    faqs: [
+      { question: 'Which one has the widest length range?', answer: 'Xiaomi Beard Trimmer 2C and Vega SmartOne S3 both list 0.5–20 mm across two combs.' },
+      { question: 'Which one has the longest stated runtime?', answer: 'Vega lists up to 160 minutes, followed by Xiaomi at up to 90 minutes and Philips at up to 30 minutes.' },
+      { question: 'Which one should I buy for a simple short beard?', answer: 'Philips is the simplest fit on paper because it uses a smaller set of beard comb lengths instead of a 40-setting wide-range system.' },
+    ],
+    updatedAt: '2026-10-08',
+    isDemo: false,
+    status: 'draft',
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
