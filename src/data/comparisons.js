@@ -432,7 +432,7 @@ const comparisonData = [
         id: 'blade',
         label: 'Blade system',
         values: [
-          { value: 'Stainless steel', note: 'Non-scratching teeth; self-sharpening' },
+          { value: 'Stainless steel', note: 'Non-scratching teeth' },
           { value: 'Stainless steel', note: 'Non-scratching teeth' },
           { value: 'Titanium', note: 'Vega describes the blade as skin-friendly' },
         ],

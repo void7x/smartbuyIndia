@@ -222,8 +222,9 @@ export default function ProductPage() {
           <div className="content-block">
             <h2 id="features-heading">Product information</h2>
             <p className="text-muted" style={{ marginBottom: '20px', maxWidth: '70ch' }}>
-              Key characteristics for this class of product. Values are stated as typical for the
-              segment rather than as a tested measurement.
+              Published product specifications and editorial observations for this specific model.
+              We have not independently tested the device, so performance claims are presented as
+              manufacturer-stated information or clearly labelled editorial guidance.
             </p>
 
             <ul className="spec-list">
@@ -312,8 +313,9 @@ export default function ProductPage() {
             </div>
           </div>
           <p className="inline-note" style={{ marginTop: '12px' }}>
-            These are general characteristics of this product class, written from published
-            specifications and common buyer considerations — not from a hands-on test by our team.
+            Our strengths and limitations are an editorial interpretation of the published
+            specifications and documented buyer considerations above, not the result of a hands-on
+            test by our team.
           </p>
         </section>
 
