@@ -2,6 +2,22 @@
    Decision product cards — concise, visual buying UI
    -------------------------------------------------------------------------- */
 
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--sp-5);
+}
+
+.decision-section__header {
+  margin-bottom: var(--sp-5);
+  max-width: 68ch;
+}
+
+.decision-section__header p {
+  margin-top: var(--sp-2);
+}
+
+
 .decision-card {
   display: flex;
   flex-direction: column;
