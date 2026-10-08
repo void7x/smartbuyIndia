@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { InfoIcon } from './Icons.jsx';
 import { cx } from '../utils/format.js';
+import { AMAZON_ASSOCIATE_DISCLOSURE } from '../config/site.js';
 
 /**
  * Affiliate disclosure. Two sizes:
@@ -24,7 +25,7 @@ export default function DisclosureNotice({
         <InfoIcon />
         <span>
           <strong>Affiliate disclosure:</strong> some links on SmartBuyIndia are affiliate links.
-          If you buy through one, we may earn a qualifying commission at no extra cost to you.
+          If you buy through one, we may earn a qualifying commission at no extra cost to you. <strong>${AMAZON_ASSOCIATE_DISCLOSURE}</strong>
           {withLink && (
             <>
               {' '}
@@ -39,6 +40,7 @@ export default function DisclosureNotice({
   return (
     <aside className={cx('callout callout--plain', className)} id={id} aria-label="Affiliate disclosure">
       <span className="callout__title">Affiliate disclosure</span>
+      <p><strong>{AMAZON_ASSOCIATE_DISCLOSURE}</strong></p>
       <p>
         SmartBuyIndia is a free, reader-supported product research website. Some links on this page
         — including every “View on Amazon.in” button — are affiliate links carrying our Amazon
