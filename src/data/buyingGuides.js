@@ -23,7 +23,7 @@ import { IS_DEMO_CONTENT } from '../config/content.js';
  * ============================================================================
  */
 
-export const buyingGuides = [
+const guideData = [
   {
     id: 'guide-air-fryers',
     title: 'Best Air Fryers for Indian Kitchens',
@@ -684,17 +684,17 @@ export const buyingGuides = [
 /* Lookups                                                                    */
 /* -------------------------------------------------------------------------- */
 
-const visibleGuides = IS_DEMO_CONTENT
+const buyingGuides = IS_DEMO_CONTENT
   ? buyingGuides
   : buyingGuides.filter((g) => g.status === 'published' && !g.isDemo);
 
-export const publishedGuides = visibleGuides;
+export const publishedGuides = buyingGuides;
 
-export const getGuideBySlug = (slug) => visibleGuides.find((g) => g.slug === slug) || null;
+export const getGuideBySlug = (slug) => buyingGuides.find((g) => g.slug === slug) || null;
 export const getGuidesByCategory = (categorySlug) =>
-  visibleGuides.filter((g) => g.categorySlug === categorySlug);
+  buyingGuides.filter((g) => g.categorySlug === categorySlug);
 
-export const guidesByRecency = [...visibleGuides].sort((a, b) =>
+export const guidesByRecency = [...buyingGuides].sort((a, b) =>
   String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')),
 );
 
