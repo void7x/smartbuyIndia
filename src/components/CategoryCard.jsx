@@ -63,7 +63,7 @@ export default function CategoryCard({ category, showCount = true, className }) 
 
   if (coming) {
     return (
-      <div className={cx('card card--link category-card--coming', className)} aria-disabled="true">
+      <div className={cx('card card--link category-card--coming', className)} style={{ '--category-accent': category.accent }} aria-disabled="true">
         <div className="card__body">{inner}</div>
       </div>
     );
@@ -72,7 +72,7 @@ export default function CategoryCard({ category, showCount = true, className }) 
   return (
     <Link
       to={`/category/${category.slug}`}
-      className={cx('card card--link', className)}
+      className={cx('card card--link category-card--home', className)} style={{ '--category-accent': category.accent }}
       aria-label={`${category.name} — browse products and guides`}
     >
       <div className="card__body">{inner}</div>
