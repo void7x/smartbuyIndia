@@ -1,3 +1,5 @@
+import { IS_DEMO_CONTENT } from '../config/content.js';
+
 /**
  * ============================================================================
  * COMPARISONS  —  ⚠ DEMO DATA LAYER
@@ -381,12 +383,20 @@ export const comparisons = [
 ];
 
 /* -------------------------------------------------------------------------- */
+/* Publication visibility                                                     */
+/* -------------------------------------------------------------------------- */
+
+const visibleComparisons = IS_DEMO_CONTENT
+  ? comparisons
+  : comparisons.filter((c) => c.status === 'published' && !c.isDemo);
+
+/* -------------------------------------------------------------------------- */
 /* Lookups                                                                    */
 /* -------------------------------------------------------------------------- */
 
 export const getComparisonBySlug = (slug) =>
   comparisons.find((c) => c.slug === slug) || null;
 export const getComparisonsByCategory = (categorySlug) =>
-  comparisons.filter((c) => c.categorySlug === categorySlug);
+  visibleComparisons.filter((c) => c.categorySlug === categorySlug);
 export const getComparisonsForProduct = (productSlug) =>
-  comparisons.filter((c) => (c.productSlugs || []).includes(productSlug));
+  visibleComparisons.filter((c) => (c.productSlugs || []).includes(productSlug));
