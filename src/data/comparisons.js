@@ -24,7 +24,7 @@ import { IS_DEMO_CONTENT } from '../config/content.js';
  * ============================================================================
  */
 
-export const comparisons = [
+const comparisonData = [
   {
     id: 'cmp-air-fryer',
     title: 'Compact vs Family Air Fryers: Which Size Suits Your Kitchen?',
@@ -386,7 +386,7 @@ export const comparisons = [
 /* Publication visibility                                                     */
 /* -------------------------------------------------------------------------- */
 
-const visibleComparisons = IS_DEMO_CONTENT
+const comparisons = IS_DEMO_CONTENT
   ? comparisons
   : comparisons.filter((c) => c.status === 'published' && !c.isDemo);
 
@@ -397,6 +397,6 @@ const visibleComparisons = IS_DEMO_CONTENT
 export const getComparisonBySlug = (slug) =>
   comparisons.find((c) => c.slug === slug) || null;
 export const getComparisonsByCategory = (categorySlug) =>
-  visibleComparisons.filter((c) => c.categorySlug === categorySlug);
+  comparisons.filter((c) => c.categorySlug === categorySlug);
 export const getComparisonsForProduct = (productSlug) =>
-  visibleComparisons.filter((c) => (c.productSlugs || []).includes(productSlug));
+  comparisons.filter((c) => (c.productSlugs || []).includes(productSlug));
