@@ -53,7 +53,7 @@ export default function Layout() {
     if (!routeTransition) return undefined;
 
     const elapsed = performance.now() - transitionStartedAt.current;
-    const minimumVisibleMs = 320;
+    const minimumVisibleMs = 760;
     const remaining = Math.max(0, minimumVisibleMs - elapsed);
     const timer = window.setTimeout(() => setRouteTransition(false), remaining);
 

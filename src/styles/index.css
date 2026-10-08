@@ -3198,7 +3198,7 @@ body {
   border-radius: 20px;
   background: var(--surface);
   box-shadow: var(--shadow-md);
-  animation: page-loader-breathe 1.7s ease-in-out infinite;
+  animation: page-loader-breathe 760ms ease-in-out both;
 }
 
 .page-loader__ring {
@@ -3211,14 +3211,14 @@ body {
 .page-loader__ring--outer {
   inset: 2px;
   border-color: color-mix(in srgb, var(--brand-300) 55%, transparent);
-  animation: page-loader-spin 6s linear infinite;
+  animation: page-loader-spin 900ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .page-loader__ring--inner {
   inset: 24px;
   border-style: dashed;
   border-color: color-mix(in srgb, var(--accent-500) 55%, transparent);
-  animation: page-loader-spin-reverse 4s linear infinite;
+  animation: page-loader-spin-reverse 720ms cubic-bezier(0.4, 0, 0.2, 1) 90ms both;
 }
 
 .page-loader__orbit {
@@ -3233,26 +3233,28 @@ body {
   background: var(--surface);
   color: var(--brand-600);
   box-shadow: var(--shadow-xs);
-  animation: page-loader-float 1.8s ease-in-out infinite;
+  opacity: 0;
+  animation: page-loader-symbol-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .page-loader__orbit--one {
   top: 8px;
   left: 48px;
+  animation-delay: 170ms;
 }
 
 .page-loader__orbit--two {
   right: 8px;
   bottom: 28px;
   color: var(--accent-600);
-  animation-delay: -0.55s;
+  animation-delay: 330ms;
 }
 
 .page-loader__orbit--three {
   left: 8px;
   bottom: 24px;
   color: var(--success);
-  animation-delay: -1.05s;
+  animation-delay: 500ms;
 }
 
 .page-loader__message {
@@ -3281,13 +3283,15 @@ body {
 @keyframes page-loader-spin-reverse { to { transform: rotate(-360deg); } }
 
 @keyframes page-loader-breathe {
-  0%, 100% { transform: scale(0.97); }
-  50% { transform: scale(1.03); }
+  0% { opacity: 0; transform: scale(0.9); }
+  35% { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-@keyframes page-loader-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+@keyframes page-loader-symbol-in {
+  0% { opacity: 0; transform: translateY(8px) scale(0.72) rotate(-10deg); }
+  65% { opacity: 1; transform: translateY(-2px) scale(1.06) rotate(4deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
 }
 
 @keyframes page-loader-dot {
@@ -3301,6 +3305,9 @@ body {
   .page-loader__brand,
   .page-loader__orbit,
   .page-loader__dots i { animation: none; }
+
+  .page-loader__brand,
+  .page-loader__orbit { opacity: 1; }
 }
 
 
