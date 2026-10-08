@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import useSeo from '../hooks/useSeo.js';
-import { SITE_NAME, CONTACT_EMAIL, LEGAL_ENTITY, LEGAL_CITY } from '../config/site.js';
+import { SITE_NAME, CONTACT_EMAIL, LEGAL_ENTITY, LEGAL_CITY, AMAZON_ASSOCIATE_DISCLOSURE } from '../config/site.js';
 import { AMAZON_ASSOCIATE_ID, TRACKING_IDS } from '../config/affiliate.js';
 import { breadcrumbSchema } from '../utils/seo.js';
 import Breadcrumbs from '../components/Breadcrumbs.jsx';
 import AnchorLink from '../components/AnchorLink.jsx';
 import { InfoIcon, ShieldIcon } from '../components/Icons.jsx';
 
-const UPDATED = 'Draft — review and date before launch';
+const UPDATED = 'Staging draft — 8 October 2026; final legal/contact details required before public launch';
 
 /**
  * /disclosure — the full affiliate disclosure.
@@ -42,6 +42,10 @@ export default function DisclosurePage() {
             we may earn a qualifying commission at no additional cost to you.
           </p>
           <p className="legal__updated">Last updated: {UPDATED}</p>
+          <div className="callout callout--info" style={{ marginTop: '16px' }}>
+            <span className="callout__title">Required Amazon Associates identification</span>
+            <p style={{ marginBottom: 0 }}><strong>{AMAZON_ASSOCIATE_DISCLOSURE}</strong></p>
+          </div>
         </div>
       </div>
 
