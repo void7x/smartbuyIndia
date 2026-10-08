@@ -1393,10 +1393,13 @@ hr {
   box-shadow: var(--shadow-sm);
 }
 
-.product-hero__media > * {
-  aspect-ratio: 4 / 3;
+.product-hero__media > img,
+.product-hero__media > svg {
+  display: block;
   width: 100%;
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  padding: var(--sp-4);
 }
 
 .product-hero__media-caption {
