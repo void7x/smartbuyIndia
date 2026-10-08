@@ -678,6 +678,51 @@ const guideData = [
     isDemo: true,
     status: 'draft',
   },
+  {
+    id: 'guide-beard-trimmer-india',
+    title: 'How to Choose a Beard Trimmer in India',
+    slug: 'how-to-choose-beard-trimmer-india',
+    categorySlug: 'beauty-grooming',
+    heroTitle: 'How to Choose a Beard Trimmer in India',
+    metaDescription: 'A quick guide to beard-trimmer length control, blades, battery, charging and water resistance — plus three researched options for different needs.',
+    intro: ['You do not need the trimmer with the biggest specification sheet. Start with the beard length you keep, then check length control, charging, cleaning and warranty.'],
+    readingTimeMinutes: 3,
+    whatToLookFor: [
+      { title: '1. Length control first', body: 'Check the real range, adjustment steps and how many combs are needed. Xiaomi 2C and Vega S3 cover 0.5–20 mm across two combs; Philips BT1232/18 uses a simpler 3 mm and 7 mm comb setup.' },
+      { title: '2. Battery + charging', body: 'Runtime matters, but so does recharge time. In this shortlist, Philips lists 30 minutes after an 8-hour charge, Xiaomi lists up to 90 minutes after about 2 hours, and Vega lists up to 160 minutes after about 90 minutes.' },
+      { title: '3. Cleaning and water claims', body: 'Look for the exact manufacturer wording. Washable attachments are not the same thing as a trimmer that is designed for shower use; Vega lists an IPX7 claim, while Xiaomi and Philips specify washable or rinseable parts.' },
+      { title: '4. Buy the features you will use', body: 'USB-C, extra speed modes and very wide length ranges can be useful, but they should not decide the purchase by themselves. Match the features to your actual grooming routine.' },
+    ],
+    keySpecs: [
+      { name: 'Length range', why: 'Determines how much style flexibility you have.', typical: 'Short fixed combs to 0.5–20 mm depending on model' },
+      { name: 'Adjustment precision', why: 'Smaller steps make it easier to keep a repeatable length.', typical: '1 mm steps to 0.5 mm precision' },
+      { name: 'Runtime + charge time', why: 'Shows whether the trimmer fits your charging routine.', typical: 'About 30–160 min runtime in this shortlist' },
+      { name: 'Water/cleaning', why: 'Changes how easy the device is to maintain.', typical: 'Rinseable/washable parts; some models add an IP rating' },
+      { name: 'Warranty', why: 'Important for a small appliance you may use regularly.', typical: '1–2 years among these three models' },
+    ],
+    productSlugs: ['philips-bt1232-18', 'xiaomi-beard-trimmer-2c', 'vega-smartone-s3'],
+    picks: [
+      { productSlug: 'philips-bt1232-18', label: 'Good for a simple short-beard routine', why: 'The simplest setup of the three: 3 mm and 7 mm combs, 30-minute runtime and a 2-year warranty.', watchOuts: ['Skip it if you need a broad 0.5–20 mm range or faster full charging.'] },
+      { productSlug: 'xiaomi-beard-trimmer-2c', label: 'Good for wide length control', why: '40 settings, 0.5 mm precision, Type-C charging and up to 90 minutes of stated runtime.', watchOuts: ['The full 0.5–20 mm range uses two combs, and the adapter is not included.'] },
+      { productSlug: 'vega-smartone-s3', label: 'Good for feature-heavy trimming', why: '40 settings, three speed modes, Type-C, cord/cordless operation and up to 160 minutes stated runtime.', watchOuts: ['Extra features are useful only if you actually need them; the AI/SmartTrim claims are manufacturer claims, not our test results.'] },
+    ],
+    thingsToAvoid: [
+      'Choosing a trimmer just because it has the most settings.',
+      'Treating a washable attachment as proof that the whole device is shower-safe.',
+      'Publishing a price without checking the live Amazon.in listing on the day it is shown.',
+      'Calling a product “tested” or “best” when SmartBuyIndia has not actually tested it.',
+    ],
+    faqs: [
+      { question: 'Is 0.5 mm better than 1 mm?', answer: 'Not automatically. A 0.5 mm option gives finer control for very short styles, while a 1 mm step may be perfectly adequate for a buyer who keeps a consistent beard length.' },
+      { question: 'Is USB-C important on a beard trimmer?', answer: 'It is mainly a convenience feature. Check charging time and runtime as well; USB-C by itself does not prove faster charging.' },
+      { question: 'Do I need a waterproof trimmer?', answer: 'Only if that feature matches your routine. A washable head can already make maintenance easier; check the manufacturer’s exact water-resistance claim before using a trimmer around water.' },
+    ],
+    finalThoughts: ['For most buyers, the decision is simple: choose the length range first, then battery/charging, then cleaning and warranty. Everything else is secondary.'],
+    updatedAt: '2026-10-08',
+    author: 'SmartBuyIndia Editorial',
+    isDemo: false,
+    status: 'draft',
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
