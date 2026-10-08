@@ -724,6 +724,59 @@ const guideData = [
     isDemo: false,
     status: 'draft',
   },
+  {
+    id: 'guide-how-to-choose-hair-dryer-india',
+    title: 'How to Choose a Hair Dryer in India',
+    slug: 'how-to-choose-hair-dryer-india',
+    categorySlug: 'beauty-grooming',
+    heroTitle: 'How to Choose a Hair Dryer in India',
+    metaDescription: 'A practical hair-dryer buying guide covering power, heat and speed settings, cool shot, attachments, portability, socket needs and everyday use.',
+    intro: [
+      'Do not start with the biggest wattage number. Start with how you dry your hair, then compare heat/speed control, airflow focus, attachments, portability and the power connection your home can actually support.',
+    ],
+    readingTimeMinutes: 4,
+    whatToLookFor: [
+      { title: '1. Match the dryer to your routine', body: 'Occasional drying, daily blow-drying and styling with a diffuser are different jobs. A compact 1200W dryer may be plenty for one buyer while another benefits more from a larger attachment kit.' },
+      { title: '2. Treat wattage as a clue, not a score', body: 'The three products in our first shortlist span 1200W to 2000W, but wattage alone does not tell you how quickly a dryer will work on your hair. Look at the control range, airflow design and attachment setup too.' },
+      { title: '3. Check heat, speed and cool-shot control', body: 'More control gives you more ways to adjust the drying session. Philips lists three heat/speed settings, Havells lists hot/warm/cool options with a cool-shot button, and AGARO lists two speeds, three temperature settings and cool shot.' },
+      { title: '4. Decide whether you will use the attachments', body: 'A diffuser, concentrator and comb can be useful for styling, but they also add bulk. Do not pay for an attachment bundle you will leave in the drawer.' },
+      { title: '5. Check portability and the socket', body: 'Foldable handles help in small bathrooms and travel bags. High-power models may use larger plugs, so check the manufacturer listing before assuming the dryer will work with the socket where you plan to use it.' },
+    ],
+    keySpecs: [
+      { name: 'Power', why: 'Useful context, but not a standalone performance score.', typical: 'About 1200–2000W in this shortlist' },
+      { name: 'Heat + speed control', why: 'Determines how much control you have over the drying session.', typical: '2–3 settings depending on model' },
+      { name: 'Cool shot', why: 'Useful when you want a cool-air finishing step.', typical: 'Present on all three shortlisted models in different forms' },
+      { name: 'Attachments', why: 'Changes the dryer from basic drying to more styling-focused use.', typical: 'Nozzle to diffuser/concentrator/comb bundles' },
+      { name: 'Portability + power connection', why: 'Important for small spaces and travel.', typical: 'Foldable models; high-power model uses a 16A plug' },
+    ],
+    productSlugs: ['havells-hd3151', 'philips-bhd318-00', 'agaro-hd1120'],
+    comparisonSlug: 'philips-bhd318-vs-havells-hd3151-vs-agaro-hd1120',
+    picks: [
+      { productSlug: 'havells-hd3151', label: 'Good for compact everyday use', why: 'The lowest-power and lighter-feeling end of the shortlist, with a foldable design and hot/warm/cool control.', watchOuts: ['Skip it if you want a large styling attachment kit or higher power.'] },
+      { productSlug: 'philips-bhd318-00', label: 'Good for balanced everyday care', why: '1600W, ThermoProtect, ionic care, three heat/speed settings and a foldable handle create a middle-ground setup.', watchOuts: ['Do not buy it purely for the ionic-care wording; we have not independently tested the claimed result.'] },
+      { productSlug: 'agaro-hd1120', label: 'Good for power + attachments', why: '2000W AC motor plus diffuser, concentrator and comb makes it the most styling-focused option here.', watchOuts: ['Check the 16A socket requirement and verify current Amazon availability before ordering.'] },
+    ],
+    thingsToAvoid: [
+      'Choosing a dryer only because its wattage is the highest.',
+      'Assuming “ionic”, “ThermoProtect” or similar marketing terms are independent performance results.',
+      'Ignoring the plug/socket requirement of a high-power dryer.',
+      'Paying for a diffuser or comb bundle you do not plan to use.',
+      'Publishing a price or discount without checking the live Amazon.in listing on the day it is shown.',
+    ],
+    faqs: [
+      { question: 'Is a 2000W hair dryer automatically better than a 1200W dryer?', answer: 'No. Higher wattage indicates a higher power rating, but real-world drying also depends on airflow design, heat control, hair type and technique. Choose the power and control set that fits your routine.' },
+      { question: 'Do I need a diffuser?', answer: 'Only if you plan to use a diffuser-based styling routine. If you mostly want straightforward drying, a nozzle or simpler attachment setup may be enough.' },
+      { question: 'Is a cool-shot button important?', answer: 'It can be useful as a finishing control, especially when you want to switch to cooler airflow. It is helpful, but it should not be the only factor deciding the purchase.' },
+      { question: 'What should I check before buying a high-power hair dryer in India?', answer: 'Check the exact plug and socket requirement in the manufacturer listing and your intended room. The AGARO HD-1120, for example, currently lists a 16A plug.' },
+    ],
+    finalThoughts: [
+      'For most buyers, the decision comes down to three questions: do you need portability, do you need more heat/speed control, and will you actually use styling attachments? Once those are clear, wattage becomes a supporting detail rather than the headline.',
+    ],
+    updatedAt: '2026-10-08',
+    author: 'SmartBuyIndia Editorial',
+    isDemo: false,
+    status: 'draft',
+  },
 ];
 
 /* -------------------------------------------------------------------------- */

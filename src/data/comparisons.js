@@ -517,6 +517,127 @@ const comparisonData = [
     isDemo: false,
     status: 'draft',
   }
+  {
+    id: 'cmp-philips-bhd318-vs-havells-hd3151-vs-agaro-hd1120',
+    title: 'Philips BHD318/00 vs Havells HD3151 vs AGARO HD-1120',
+    slug: 'philips-bhd318-vs-havells-hd3151-vs-agaro-hd1120',
+    categorySlug: 'beauty-grooming',
+    heroTitle: 'Which hair dryer fits the way you actually dry your hair?',
+    metaDescription: 'Compare Philips BHD318/00, Havells HD3151 and AGARO HD-1120 on power, controls, attachments, portability and socket needs.',
+    intro: 'These three hair dryers target different routines: Havells keeps things compact and simple, Philips sits in the middle with ThermoProtect and ionic care, while AGARO goes for higher power and a larger styling kit. There is no overall winner.',
+    productSlugs: ['philips-bhd318-00', 'havells-hd3151', 'agaro-hd1120'],
+    guideSlug: 'how-to-choose-hair-dryer-india',
+    howToRead: 'Use the verdict row to match a dryer to your routine, then check the detailed rows for the trade-offs. Product specifications come from manufacturer or documented marketplace information; live prices remain unpublished until manually verified on Amazon.in.',
+    verdicts: {
+      'philips-bhd318-00': {
+        label: 'Balanced everyday option',
+        why: '1600W, ThermoProtect, ionic care, three heat/speed settings and a foldable handle make it the middle-ground choice.',
+      },
+      'havells-hd3151': {
+        label: 'Compact + simple control',
+        why: '1200W foldable design with hot/warm/cool settings suits buyers who value portability over maximum power.',
+      },
+      'agaro-hd1120': {
+        label: 'Power + styling kit',
+        why: '2000W AC motor plus diffuser, concentrator and comb gives it the broadest styling setup in this shortlist.',
+      },
+    },
+    rows: [
+      {
+        id: 'power',
+        label: 'Power',
+        highlight: true,
+        values: [
+          { value: '1600W' },
+          { value: '1200W' },
+          { value: '2000W' },
+        ],
+      },
+      {
+        id: 'controls',
+        label: 'Heat / speed control',
+        values: [
+          { value: '3 heat & speed settings', note: 'Cool air setting' },
+          { value: 'Hot / warm / cool', note: 'Cool-shot button' },
+          { value: '2 speeds + 3 temperatures', note: 'Cool shot' },
+        ],
+      },
+      {
+        id: 'care',
+        label: 'Care / styling features',
+        values: [
+          { value: 'ThermoProtect + ionic care' },
+          { value: 'Simple drying controls' },
+          { value: 'Diffuser + concentrator + comb' },
+        ],
+      },
+      {
+        id: 'portability',
+        label: 'Portability',
+        values: [
+          { value: 'Foldable handle', note: '1.8 m cord' },
+          { value: 'Foldable', note: '335 g listed weight' },
+          { value: 'Larger professional-style body', note: 'About 1.05 kg listed weight' },
+        ],
+      },
+      {
+        id: 'power-connection',
+        label: 'Power connection',
+        values: [
+          { value: 'Standard corded use' },
+          { value: 'Standard corded use' },
+          { value: '16A plug listed by AGARO' },
+        ],
+      },
+      {
+        id: 'warranty',
+        label: 'Warranty',
+        values: [
+          { value: '2 years' },
+          { value: 'Check current listing' },
+          { value: 'Check current listing' },
+        ],
+      },
+      {
+        id: 'extras',
+        label: 'What is extra',
+        values: [
+          { value: 'ThermoProtect attachment' },
+          { value: 'Foldable compact design' },
+          { value: 'Diffuser, concentrator, comb' },
+        ],
+      },
+    ],
+    editorialConclusion: {
+      heading: 'How to decide',
+      body: [
+        'Choose Havells when portability and a straightforward control set matter more than maximum power. It is the smallest-feeling concept in this shortlist and the least attachment-heavy.',
+        'Choose Philips when you want a balanced everyday dryer with a broader control set plus ThermoProtect and ionic care. It sits between the other two on power and complexity.',
+        'Choose AGARO when you will actually use styling attachments and want the highest stated power. Check the 16A socket requirement and live Amazon availability before ordering.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'Which of these has the highest power?',
+        answer: 'AGARO HD-1120 is listed at 2000W, followed by Philips BHD318/00 at 1600W and Havells HD3151 at 1200W. Wattage alone is not a complete measure of drying performance.',
+      },
+      {
+        question: 'Which is easiest to pack?',
+        answer: 'Havells HD3151 and Philips BHD318/00 both use foldable designs; the Havells is the lower-power, more compact-oriented option.',
+      },
+      {
+        question: 'Which has the most attachments?',
+        answer: 'AGARO lists a diffuser, concentrator nozzle and comb, making it the most attachment-focused option of these three.',
+      },
+      {
+        question: 'Do I need a 16A socket for all three?',
+        answer: 'No. The 16A plug is specifically listed for the current AGARO HD-1120 model. Check the exact manufacturer listing for any hair dryer before assuming its plug requirements.',
+      },
+    ],
+    updatedAt: '2026-10-08',
+    isDemo: false,
+    status: 'draft',
+  }
 ];
 
 /* -------------------------------------------------------------------------- */
