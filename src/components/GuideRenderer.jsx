@@ -150,12 +150,6 @@ export default function GuideRenderer({ guide, placementPrefix = 'guide' }) {
       {/* 4. Recommended products */}
       {guide.picks?.length > 0 && (
         <section id={SECTIONS.picks} className="content-block" aria-labelledby={`${SECTIONS.picks}-h`}>
-          <h2 id={`${SECTIONS.picks}-h`}>Recommended products</h2>
-          <p className="text-muted" style={{ marginBottom: '20px', maxWidth: '70ch' }}>
-            Each entry below is labelled with the situation it suits rather than a rank. Reasons are
-            given so you can judge whether they apply to you.
-          </p>
-
           <div className="decision-section__header">
             <div>
               <h2 id={`${SECTIONS.picks}-h`}>Recommended products</h2>
