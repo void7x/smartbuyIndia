@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import { trackPageView } from '../utils/analytics.js';
 import { organizationSchema } from '../utils/seo.js';
 import { IS_DEMO_CONTENT } from '../config/content.js';
+import PageLoader from './PageLoader.jsx';
 
 /**
  * App shell: demo ribbon + header, routed page content, footer.
@@ -59,7 +60,9 @@ export default function Layout() {
       </a>
       <Header />
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       {IS_DEMO_CONTENT && (

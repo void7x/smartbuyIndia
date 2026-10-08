@@ -37,37 +37,28 @@ export default function Footer() {
               sensible options — then link out to Amazon.in so you can buy.
             </p>
 
-            <p className="footer__heading">Social</p>
-            <div className="footer__social">
-              {SOCIAL_LINKS.map((social) => {
-                const Icon = SOCIAL_ICONS[social.id];
-                if (social.url) {
-                  return (
-                    <a
-                      key={social.id}
-                      className="social-btn"
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                    >
-                      {Icon && <Icon />}
-                      {social.label}
-                    </a>
-                  );
-                }
-                return (
-                  <span
-                    key={social.id}
-                    className="social-btn"
-                    aria-disabled="true"
-                    title={`${social.label} profile coming soon`}
-                  >
-                    {Icon && <Icon />}
-                    {social.label} · soon
-                  </span>
-                );
-              })}
-            </div>
+            {SOCIAL_LINKS.some((social) => social.url) && (
+              <>
+                <p className="footer__heading">Social</p>
+                <div className="footer__social">
+                  {SOCIAL_LINKS.filter((social) => social.url).map((social) => {
+                    const Icon = SOCIAL_ICONS[social.id];
+                    return (
+                      <a
+                        key={social.id}
+                        className="social-btn"
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                      >
+                        {Icon && <Icon />}
+                        {social.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
 
           <nav aria-labelledby="footer-explore">

@@ -16,4 +16,4 @@ export const IS_DEMO_CONTENT = CONTENT_MODE === 'demo';
 
 /** Copy used by the demo ribbons / badges. */
 export const DEMO_NOTICE =
-  'Demo content for layout and structure review. Product names, prices and links are placeholders and will be replaced with verified information before launch.';
+  'Staging build. Some catalogue entries are still demo content; researched drafts are available for review but are not published to search.';

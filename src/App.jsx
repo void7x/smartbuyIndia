@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import { ROUTER_MODE } from './config/site.js';
@@ -26,21 +26,12 @@ const TermsPage = lazy(() => import('./pages/TermsPage.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 const RedirectHandler = lazy(() => import('./pages/RedirectHandler.jsx'));
 
-function PageFallback() {
-  return (
-    <div className="container section" role="status" aria-live="polite">
-      <p className="text-muted">Loading…</p>
-    </div>
-  );
-}
-
 export default function App() {
   const Router = ROUTER_MODE === 'browser' ? BrowserRouter : HashRouter;
 
   return (
     <Router>
-      <Suspense fallback={<PageFallback />}>
-        <Routes>
+      <Routes>
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
 
@@ -71,7 +62,6 @@ export default function App() {
             <Route path={ROUTES.notFound} element={<NotFound />} />
           </Route>
         </Routes>
-      </Suspense>
     </Router>
   );
 }

@@ -156,24 +156,23 @@ export default function ProductPage() {
             ) : (
               <>
                 <p className="buy-box__price" style={{ fontSize: 'var(--fs-lg)' }}>
-                  Price not published
+                  Check today's price
                 </p>
                 <p className="inline-note">
-                  We only show a price when a person on our team has checked it on Amazon.in and
-                  recorded the date. Rather than publish a number we cannot stand behind, we leave it
-                  out — use the button below to see the live price.
+                  We publish a price only after a manual check on Amazon.in. For now, use the button
+                  below to see the retailer's current price directly.
                 </p>
               </>
             )}
 
-            {product.priceNote && (
-              <p className="inline-note" style={{ color: 'var(--ink-500)' }}>
-                {product.priceNote}
-              </p>
-            )}
-
-            <AmazonButton product={product} placement="product-buy-box" variant="accent" size="lg" block />
-            <AmazonButton product={product} placement="product-buy-box-secondary" variant="secondary" size="sm" block label="Check availability on Amazon.in" />
+            <AmazonButton
+              product={product}
+              placement="product-buy-box"
+              variant="accent"
+              size="lg"
+              block
+              label={price ? 'View on Amazon.in' : "Check today's price on Amazon.in"}
+            />
 
             <dl className="buy-box__rows">
               <div className="buy-box__row">
@@ -181,8 +180,8 @@ export default function ProductPage() {
                 <dd>Amazon.in</dd>
               </div>
               <div className="buy-box__row">
-                <dt>Sold &amp; shipped by</dt>
-                <dd>The retailer (not SmartBuyIndia)</dd>
+                <dt>Seller / fulfilment</dt>
+                <dd>Can vary on Amazon.in</dd>
               </div>
               <div className="buy-box__row">
                 <dt>Category</dt>

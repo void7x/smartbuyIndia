@@ -63,8 +63,8 @@ export default function Header() {
       {isDemo && (
         <div className="demo-ribbon">
           <div className="container">
-            <strong>Demo build.</strong> Product entries, prices and Amazon links on this site are
-            placeholders for layout review — nothing here is a real recommendation yet.
+            <strong>Staging build.</strong> Some catalogue entries are still demo content; researched
+            drafts are visible here for review and are not indexed for search.
           </div>
         </div>
       )}
