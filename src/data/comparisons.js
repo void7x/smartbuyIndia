@@ -386,9 +386,9 @@ const comparisonData = [
 /* Publication visibility                                                     */
 /* -------------------------------------------------------------------------- */
 
-const comparisons = IS_DEMO_CONTENT
-  ? comparisons
-  : comparisons.filter((c) => c.status === 'published' && !c.isDemo);
+export const comparisons = IS_DEMO_CONTENT
+  ? comparisonData
+  : comparisonData.filter((c) => c.status === 'published' && !c.isDemo);
 
 /* -------------------------------------------------------------------------- */
 /* Lookups                                                                    */
