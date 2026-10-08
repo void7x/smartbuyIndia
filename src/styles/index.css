@@ -3302,3 +3302,21 @@ body {
   .page-loader__orbit,
   .page-loader__dots i { animation: none; }
 }
+
+
+/* Route transition overlay — visible on internal navigation even when chunks are cached. */
+.route-transition {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-modal) + 10);
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.route-transition .page-loader {
+  width: min(100%, 460px);
+  min-height: 100vh;
+  padding: 32px 20px;
+}

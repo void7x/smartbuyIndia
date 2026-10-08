@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -15,6 +15,42 @@ import PageLoader from './PageLoader.jsx';
 export default function Layout() {
   const location = useLocation();
   const { pathname, search, hash } = location;
+  const [routeTransition, setRouteTransition] = useState(false);
+  const transitionStartedAt = useRef(0);
+
+  // Show a brief branded transition when a shopper explicitly clicks an internal link.
+  // This is separate from Suspense so the experience still feels intentional when route chunks
+  // are already cached and navigation would otherwise be visually instant.
+  useEffect(() => {
+    const onInternalLinkClick = (event) => {
+      if (event.defaultPrevented || event.button !== 0) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      const link = event.target.closest?.('a[href]');
+      if (!link) return;
+      if (link.target === '_blank' || link.hasAttribute('download')) return;
+
+      const href = link.getAttribute('href') || '';
+      if (!href.startsWith('/') || href.startsWith('//') || href.startsWith('/#')) return;
+
+      transitionStartedAt.current = performance.now();
+      setRouteTransition(true);
+    };
+
+    document.addEventListener('click', onInternalLinkClick, true);
+    return () => document.removeEventListener('click', onInternalLinkClick, true);
+  }, []);
+
+  useEffect(() => {
+    if (!routeTransition) return undefined;
+
+    const elapsed = performance.now() - transitionStartedAt.current;
+    const minimumVisibleMs = 320;
+    const remaining = Math.max(0, minimumVisibleMs - elapsed);
+    const timer = window.setTimeout(() => setRouteTransition(false), remaining);
+
+    return () => window.clearTimeout(timer);
+  }, [pathname, search, hash]);
 
   // Scroll restoration. Hash anchors (FAQ sections, TOC links) win.
   useEffect(() => {
@@ -59,6 +95,11 @@ export default function Layout() {
         Skip to main content
       </a>
       <Header />
+      {routeTransition && (
+        <div className="route-transition" aria-hidden="true">
+          <PageLoader />
+        </div>
+      )}
       <main id="main" tabIndex={-1}>
         <Suspense fallback={<PageLoader />}>
           <Outlet />
