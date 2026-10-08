@@ -883,7 +883,7 @@ const productData = [
     priceNote: 'Observed Amazon marketplace snapshots around ₹1,149 were found in September 2026, but the live Amazon price has not been manually verified for publication.',
     priceVerifiedOn: null,
     asin: 'B0CBMSN9GT',
-    amazonUrl: '#',
+    amazonUrl: "https://www.amazon.in/VEGA-Smartone-Trimmer-Waterproof-Settings/dp/B0CBMSN9GT?crid=VPNKZ9C4EM0I&dib=eyJ2IjoiMSJ9.C7HNTer8lhGywsux51bbqg.ksOxVk48ZJQeJcBElva4fvbEtLMnTyHlM2dMVGmvo1w&dib_tag=se&keywords=VHTH-36+%2F+B0CBMSN9GT&qid=1791450320&sprefix=%2Caps%2C426&sr=8-1&linkCode=ll2&tag=smartbuyi080f-21&linkId=5db6a2f723004ec36dd5c44d79fb7417&ref_=as_li_ss_tl",
     affiliateVerified: false,
     image: null,
     imageAlt: 'Vega SmartOne S3 beard trimmer product image; approved image asset to be added before publication.',
