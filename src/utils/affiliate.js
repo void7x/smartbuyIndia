@@ -84,8 +84,9 @@ export function tagExistingUrl(rawUrl, tag, subId) {
 export function generateAffiliateUrl(product, options = {}) {
   if (!product) return PLACEHOLDER_AFFILIATE_URL;
 
-  // Production safeguard: research records only become clickable after the
-  // Amazon listing has been manually verified. Demo/staging records stay inert.
+  // A product becomes clickable only after SmartBuyIndia has manually verified
+  // the exact Amazon listing/ASIN. This flag is product-link verification, not
+  // a claim that the Associates account has received final program approval.
   if (!product.affiliateVerified) return PLACEHOLDER_AFFILIATE_URL;
 
   const campaign = options.campaign || DEFAULT_CAMPAIGN;
