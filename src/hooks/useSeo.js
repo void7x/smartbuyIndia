@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { setSeo } from '../utils/seo.js';
+import { IS_DEMO_CONTENT } from '../config/content.js';
 
 /**
  * Declarative page metadata.
@@ -13,7 +14,9 @@ export default function useSeo(options) {
   const schema = options?.schema ?? null;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setSeo({ ...options, schema });
+    // Public Render is a staging environment while CONTENT_MODE is 'demo'.
+    // Keep placeholder pages out of search until verified production content exists.
+    setSeo({ ...options, noIndex: Boolean(options?.noIndex || IS_DEMO_CONTENT), schema });
     // Re-apply on route changes even when the values look identical.
   }, [
     options?.title,
