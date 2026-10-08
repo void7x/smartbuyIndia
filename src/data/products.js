@@ -775,7 +775,7 @@ const productData = [
     priceNote: 'Live Amazon price not published yet; verify on the Amazon.in listing immediately before launch.',
     priceVerifiedOn: null,
     asin: 'B0BXNVPRGS',
-    amazonUrl: '#',
+    amazonUrl: "https://www.amazon.in/Durapower-Sharpening-charging-warranty-BT1232/dp/B0BXNVPRGS?crid=J693DZRBGSK5&dib=eyJ2IjoiMSJ9.PRSTxBtWhHLu6aBO84ErBMpKEbFs1_gpQzGTbGLfmI90W1T2WtWb_tlz27Oe4uMRzBpDxfbsnEfggRpQYys6X2mds4ufqFNUZYYLWIMaYRQTgStLjfE1ICpEOM-VaOladyTpnjkW7_qLur27kp_t3DCKusliTJklhJSu6qY_e8v73VeI94AimzmDdU6IpVc64CoXRRFGWoiKnhrV5qVzrlMUO6DpQZp_GpYBmMzTQZ932xQG5ut2nZs17XwWx8M8TWBtIGPZEzU4C5dbsEFQKV9UlRnYJheMFOlXRxj7kwk.3FcZuV5-TAh0-Tj08k5keBpFI36tyAYkt-j6s40wkP4&dib_tag=se&keywords=Philips%2BBT1232%2F18&nsdOptOutParam=true&qid=1791450509&sprefix=%2Caps%2C407&sr=8-5&th=1&linkCode=ll2&tag=smartbuyi080f-21&linkId=3097d69125fdebbbaf318c65f0b6615b&ref_=as_li_ss_tl",
     affiliateVerified: false,
     image: null,
     imageAlt: 'Philips BT1232/18 beard trimmer product image; approved image asset to be added before publication.',
