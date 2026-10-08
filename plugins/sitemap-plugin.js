@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 // imported directly by Node at build time. `SITE_BASE` falls back to '/' when
 // `import.meta.env` is unavailable outside Vite — we pass the real base in.
 import { categories, products, buyingGuides, comparisons } from '../src/data/index.js';
+import { CONTENT_MODE } from '../src/config/content.js';
 import {
   SITE_BASE as DEFAULT_BASE,
   SITE_URL as DEFAULT_URL,
@@ -48,24 +49,32 @@ export function sitemapPlugin({
       const full = (path) => `${origin}${prefix}${path}`;
       const today = new Date().toISOString().slice(0, 10);
 
-      const liveCats = categories.filter((c) => !c.comingSoon);
+      // Only verified production content belongs in the sitemap.
+      // During demo/staging mode we publish an intentionally empty sitemap.
+      const isProduction = CONTENT_MODE === 'production';
+      const liveCats = categories.filter((c) => isProduction && !c.comingSoon && c.status === 'published');
+      const liveProducts = products.filter((p) => isProduction && p.status === 'published' && !p.isDemo);
+      const liveGuides = buyingGuides.filter((g) => isProduction && g.status === 'published' && !g.isDemo);
+      const liveComparisons = comparisons.filter((c) => isProduction && c.status === 'published' && !c.isDemo);
 
-      const urls = [
-        { path: '/', changefreq: 'weekly', priority: '1.0' },
-        { path: '/categories', changefreq: 'weekly', priority: '0.9' },
-        { path: '/buying-guides', changefreq: 'weekly', priority: '0.9' },
-        { path: '/compare', changefreq: 'weekly', priority: '0.8' },
-        { path: '/deals', changefreq: 'daily', priority: '0.8' },
-        { path: '/about', changefreq: 'monthly', priority: '0.5' },
-        { path: '/contact', changefreq: 'monthly', priority: '0.4' },
-        { path: '/disclosure', changefreq: 'yearly', priority: '0.6' },
-        { path: '/privacy', changefreq: 'yearly', priority: '0.3' },
-        { path: '/terms', changefreq: 'yearly', priority: '0.3' },
-        ...liveCats.map((c) => ({ path: `/category/${c.slug}`, changefreq: 'weekly', priority: '0.8' })),
-        ...products.map((p) => ({ path: `/product/${p.slug}`, changefreq: 'weekly', priority: '0.7' })),
-        ...buyingGuides.map((g) => ({ path: `/guide/${g.slug}`, changefreq: 'monthly', priority: '0.8' })),
-        ...comparisons.map((c) => ({ path: `/compare/${c.slug}`, changefreq: 'monthly', priority: '0.7' })),
-      ];
+      const urls = isProduction
+        ? [
+            { path: '/', changefreq: 'weekly', priority: '1.0' },
+            { path: '/categories', changefreq: 'weekly', priority: '0.9' },
+            { path: '/buying-guides', changefreq: 'weekly', priority: '0.9' },
+            { path: '/compare', changefreq: 'weekly', priority: '0.8' },
+            { path: '/deals', changefreq: 'daily', priority: '0.8' },
+            { path: '/about', changefreq: 'monthly', priority: '0.5' },
+            { path: '/contact', changefreq: 'monthly', priority: '0.4' },
+            { path: '/disclosure', changefreq: 'yearly', priority: '0.6' },
+            { path: '/privacy', changefreq: 'yearly', priority: '0.3' },
+            { path: '/terms', changefreq: 'yearly', priority: '0.3' },
+            ...liveCats.map((c) => ({ path: `/category/${c.slug}`, changefreq: 'weekly', priority: '0.8' })),
+            ...liveProducts.map((p) => ({ path: `/product/${p.slug}`, changefreq: 'weekly', priority: '0.7' })),
+            ...liveGuides.map((g) => ({ path: `/guide/${g.slug}`, changefreq: 'monthly', priority: '0.8' })),
+            ...liveComparisons.map((c) => ({ path: `/compare/${c.slug}`, changefreq: 'monthly', priority: '0.7' })),
+          ]
+        : [];
 
       const sitemap = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -84,19 +93,27 @@ export function sitemapPlugin({
         ? `${origin}${base.replace(/\/$/, '')}/sitemap.xml`
         : `https://YOUR-DOMAIN${base.replace(/\/$/, '')}/sitemap.xml`;
 
-      const robots = [
-        '# robots.txt — SmartBuyIndia (generated at build time)',
-        'User-agent: *',
-        'Allow: /',
-        '',
-        ...(origin
-          ? [`Sitemap: ${sitemapUrl}`]
-          : [
-              '# Set SITE_URL in src/config/site.js, rebuild, and the line below becomes live:',
-              `# Sitemap: ${sitemapUrl}`,
-            ]),
-        '',
-      ].join('\n');
+      const robots = isProduction
+        ? [
+            '# robots.txt — SmartBuyIndia (generated at build time)',
+            'User-agent: *',
+            'Allow: /',
+            '',
+            ...(origin
+              ? [`Sitemap: ${sitemapUrl}`]
+              : [
+                  '# Set SITE_URL in src/config/site.js before launch:',
+                  `# Sitemap: ${sitemapUrl}`,
+                ]),
+            '',
+          ].join('\n')
+        : [
+            '# robots.txt — SmartBuyIndia staging',
+            '# Placeholder/demo content is intentionally blocked from search engines.',
+            'User-agent: *',
+            'Disallow: /',
+            '',
+          ].join('\n');
 
       writeFileSync(resolve(outDir, 'robots.txt'), robots, 'utf8');
 
