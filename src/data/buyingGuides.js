@@ -684,9 +684,9 @@ const guideData = [
 /* Lookups                                                                    */
 /* -------------------------------------------------------------------------- */
 
-const buyingGuides = IS_DEMO_CONTENT
-  ? buyingGuides
-  : buyingGuides.filter((g) => g.status === 'published' && !g.isDemo);
+export const buyingGuides = IS_DEMO_CONTENT
+  ? guideData
+  : guideData.filter((g) => g.status === 'published' && !g.isDemo);
 
 export const publishedGuides = buyingGuides;
 
