@@ -129,6 +129,23 @@ export default function ProductPage() {
               {product.shortDescription}
             </p>
 
+            <div className="product-hero__take">
+              <div className="product-hero__take-head">
+                <span className="eyebrow">Quick take</span>
+                <span className="product-hero__take-note">Research-led, not hands-on tested</span>
+              </div>
+              <div className="product-hero__take-grid">
+                <div>
+                  <span className="product-hero__take-label">Good fit</span>
+                  <strong>{product.whoItsFor?.[0] || 'Buyers whose needs match the listed specifications.'}</strong>
+                </div>
+                <div>
+                  <span className="product-hero__take-label">Watch out</span>
+                  <strong>{product.whoMightSkip?.[0] || 'Check the trade-offs before ordering.'}</strong>
+                </div>
+              </div>
+            </div>
+
             <div className="product-hero__media" style={{ maxWidth: '560px' }}>
               <ProductImage product={product} eager />
               <p className="product-hero__media-caption">{product.imageAlt}</p>
@@ -194,6 +211,28 @@ export default function ProductPage() {
             <DisclosureNotice compact />
           </aside>
         </div>
+
+        <section className="section--tight" aria-labelledby="glance-heading">
+          <div className="product-glance">
+            <div className="product-glance__heading">
+              <div>
+                <p className="eyebrow">At a glance</p>
+                <h2 id="glance-heading">The numbers worth checking first</h2>
+              </div>
+              <Link to={relatedComparisons[0] ? `/compare/${relatedComparisons[0].slug}` : `/category/${product.categorySlug}`} className="link-arrow">
+                {relatedComparisons[0] ? 'See it compared' : 'Browse the category'} <ArrowRight width={14} height={14} />
+              </Link>
+            </div>
+            <div className="product-glance__grid">
+              {(product.keyFeatures || []).slice(0, 4).map((feature) => (
+                <div className="product-glance__item" key={feature.label}>
+                  <span>{feature.label}</span>
+                  <strong>{feature.value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ---------------------------------------------- Editorial summary */}
         <section className="section--tight" aria-labelledby="summary-heading">

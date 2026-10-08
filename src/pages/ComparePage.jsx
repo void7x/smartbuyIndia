@@ -198,6 +198,29 @@ function SingleComparison({ slug }) {
           </div>
         )}
 
+        <section className="comparison-quick" aria-labelledby="quick-compare-heading">
+          <div className="comparison-quick__head">
+            <div>
+              <p className="eyebrow">Choose by fit</p>
+              <h2 id="quick-compare-heading">Which one sounds like you?</h2>
+            </div>
+            <p>These labels are use-case verdicts, not popularity rankings.</p>
+          </div>
+          <div className="comparison-quick__grid">
+            {items.map((item) => {
+              const verdict = comparison.verdicts?.[item.slug];
+              return (
+                <Link key={item.slug} to={`/product/${item.slug}`} className="comparison-quick__card">
+                  <span className="comparison-quick__product">{item.name}</span>
+                  <strong>{verdict?.label || 'Depends on your routine'}</strong>
+                  <span>{verdict?.why || 'Read the product details for the trade-offs.'}</span>
+                  <ArrowRight width={15} height={15} />
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
         <section aria-labelledby="table-heading">
           <h2 id="table-heading" style={{ marginBottom: '12px' }}>
             Side-by-side
