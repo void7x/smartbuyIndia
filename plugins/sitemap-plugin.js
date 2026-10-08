@@ -109,9 +109,10 @@ export function sitemapPlugin({
           ].join('\n')
         : [
             '# robots.txt — SmartBuyIndia staging',
-            '# Placeholder/demo content is intentionally blocked from search engines.',
+            '# Pages emit a noindex directive while CONTENT_MODE is demo.',
+            '# Crawlers are allowed to fetch the pages so they can see and honor noindex.',
             'User-agent: *',
-            'Disallow: /',
+            'Allow: /',
             '',
           ].join('\n');
 
