@@ -6,7 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.jsx';
 import AnchorLink from '../components/AnchorLink.jsx';
 import { IS_DEMO_CONTENT } from '../config/content.js';
 
-const UPDATED = 'Draft — review, date and have checked by a qualified professional before launch';
+const UPDATED = 'Staging draft — 8 October 2026; review against the live data/analytics setup before launch';
 
 /**
  * /privacy — accurate for what the site actually does today (a static site with
@@ -179,16 +179,18 @@ export default function PrivacyPage() {
 
           <h2 id="rights">Your rights</h2>
           <p>
-            Because we hold essentially no personal data about you, most privacy rights are satisfied by
-            default. To the extent the Digital Personal Data Protection Act, 2023 and other applicable
+            Because we hold very little personal data about you, many requests can be handled simply. Where
+            the Digital Personal Data Protection Act, 2023 or other applicable Indian law gives you rights
+            over your personal data, we will handle those requests according to the law in force at the time.
+             To the extent the Digital Personal Data Protection Act, 2023 and other applicable
             Indian law give you rights over your personal data, you may at any time:
           </p>
           <ul>
             <li>ask what personal data we hold about you (in practice: any message you sent us);</li>
             <li>ask us to correct it;</li>
             <li>ask us to erase it;</li>
-            <li>withdraw any consent you gave, for example to be replied to by email;</li>
-            <li>ask how to complain to the relevant regulator.</li>
+            <li>withdraw consent where our processing is based on consent;</li>
+            <li>raise a grievance with us and ask for information about the applicable regulatory route.</li>
           </ul>
           <p>
             Send any request to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with enough
