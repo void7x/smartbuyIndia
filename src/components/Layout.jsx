@@ -44,13 +44,21 @@ export default function Layout() {
   useEffect(() => {
     if (!routeTransition) return undefined;
 
+    // Safety timeout for same-page clicks or navigation cancelled by another handler.
+    const timer = window.setTimeout(() => setRouteTransition(false), 700);
+    return () => window.clearTimeout(timer);
+  }, [routeTransition]);
+
+  useEffect(() => {
+    if (!routeTransition) return undefined;
+
     const elapsed = performance.now() - transitionStartedAt.current;
     const minimumVisibleMs = 320;
     const remaining = Math.max(0, minimumVisibleMs - elapsed);
     const timer = window.setTimeout(() => setRouteTransition(false), remaining);
 
     return () => window.clearTimeout(timer);
-  }, [pathname, search, hash]);
+  }, [pathname, search, hash, routeTransition]);
 
   // Scroll restoration. Hash anchors (FAQ sections, TOC links) win.
   useEffect(() => {
