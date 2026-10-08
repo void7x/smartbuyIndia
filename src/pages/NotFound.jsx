@@ -4,7 +4,7 @@ import useSeo from '../hooks/useSeo.js';
 import { trackNotFound } from '../utils/analytics.js';
 import { liveCategories } from '../data/categories.js';
 import { guidesByRecency } from '../data/buyingGuides.js';
-import { SearchIcon, ArrowRight, BrandMark, CompassIcon, BookIcon } from '../components/Icons.jsx';
+import { SearchIcon, ArrowRight, BrandMark } from '../components/Icons.jsx';
 
 export default function NotFound() {
   const location = useLocation();
@@ -46,7 +46,7 @@ export default function NotFound() {
 
       <div className="empty-state" style={{ padding: '30px 24px' }}>
         <div className="empty-state__icon" aria-hidden="true">
-          <CompassIcon width={38} height={38} />
+          <SearchIcon width={38} height={38} />
         </div>
         <p className="card__meta">Still useful from here</p>
         <p className="text-muted">
