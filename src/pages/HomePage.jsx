@@ -141,8 +141,7 @@ export default function HomePage() {
               <p className="eyebrow">Browse by category</p>
               <h2 id="categories-heading">What are you shopping for?</h2>
               <p>
-                Five categories are live in this first release, each with its own product shortlists,
-                subcategories and buying guides.
+                The live categories each have their own product shortlists, subcategories and buying guides.
               </p>
             </div>
             <Link to="/categories" className="link-arrow">
