@@ -33,7 +33,7 @@ import { IS_DEMO_CONTENT } from '../config/content.js';
  * ============================================================================
  */
 
-export const products = [
+const productData = [
   {
     id: 'demo-air-fryer-01',
     name: 'Example Compact Air Fryer 3.5 L',
@@ -735,35 +735,31 @@ export const products = [
   },
 ];
 
-/* -------------------------------------------------------------------------- */
-/* Publication visibility                                                     */
-/* -------------------------------------------------------------------------- */
-
-const visibleProducts = IS_DEMO_CONTENT
-  ? products
-  : products.filter((p) => p.status === 'published' && !p.isDemo);
+export const products = IS_DEMO_CONTENT
+  ? productData
+  : productData.filter((p) => p.status === 'published' && !p.isDemo);
 
 /* -------------------------------------------------------------------------- */
 /* Lookups                                                                    */
 /* -------------------------------------------------------------------------- */
 
-export const getProductBySlug = (slug) => visibleProducts.find((p) => p.slug === slug) || null;
-export const getProductById = (id) => visibleProducts.find((p) => p.id === id) || null;
+export const getProductBySlug = (slug) => products.find((p) => p.slug === slug) || null;
+export const getProductById = (id) => products.find((p) => p.id === id) || null;
 export const getProductsByCategory = (categorySlug) =>
-  visibleProducts.filter((p) => p.categorySlug === categorySlug);
+  products.filter((p) => p.categorySlug === categorySlug);
 export const getProductsBySubcategory = (categorySlug, subcategorySlug) =>
-  visibleProducts.filter(
+  products.filter(
     (p) => p.categorySlug === categorySlug && p.subcategorySlug === subcategorySlug,
   );
 
 /** Products flagged for the homepage grid. */
-export const featuredProducts = visibleProducts.filter((p) => (p.badges || []).length > 0);
+export const featuredProducts = products.filter((p) => (p.badges || []).length > 0);
 
 /** Resolve an array of product slugs into full records, ignoring misses. */
 export const resolveProducts = (slugs = []) =>
   slugs.map((slug) => getProductBySlug(slug)).filter(Boolean);
 
 /** Most recently updated products first. */
-export const productsByRecency = [...visibleProducts].sort((a, b) =>
+export const productsByRecency = [...products].sort((a, b) =>
   String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')),
 );
