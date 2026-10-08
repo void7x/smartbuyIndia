@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import ProductImage from './ProductImage.jsx';
-import AmazonButton from './AmazonButton.jsx';
+import DecisionProductCard from './DecisionProductCard.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 import FAQSection from './FAQSection.jsx';
 import DisclosureNotice from './DisclosureNotice.jsx';
@@ -157,54 +156,30 @@ export default function GuideRenderer({ guide, placementPrefix = 'guide' }) {
             given so you can judge whether they apply to you.
           </p>
 
-          <div className="stack">
+          <div className="decision-section__header">
+            <div>
+              <h2 id={`${SECTIONS.picks}-h`}>Recommended products</h2>
+              <p className="text-muted">
+                Quick cards for the buying decision. Labels describe the situation each option suits;
+                they are not overall rankings.
+              </p>
+            </div>
+          </div>
+
+          <div className="decision-grid">
             {guide.picks.map((pick) => {
               const product = getProductBySlug(pick.productSlug);
               if (!product) return null;
+
               return (
-                <article className="pick" key={pick.productSlug}>
-                  <div className="pick__media">
-                    <ProductImage product={product} label="Placeholder" />
-                  </div>
-
-                  <div>
-                    <div className="pick__head">
-                      <span className="badge">{pick.label}</span>
-                      {product.isDemo && <span className="badge badge--demo">Demo entry</span>}
-                    </div>
-
-                    <h3 className="pick__title">
-                      <Link to={`/product/${product.slug}`}>{product.name}</Link>
-                    </h3>
-
-                    <p className="pick__why">
-                      <strong>Why it is here: </strong>
-                      {pick.why}
-                    </p>
-
-                    {pick.watchOuts?.length > 0 && (
-                      <ul className="check-list check-list--cons">
-                        {pick.watchOuts.map((note) => (
-                          <li key={note}>
-                            <AlertIcon aria-hidden="true" />
-                            <span>{note}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    <div className="pick__actions">
-                      <AmazonButton
-                        product={product}
-                        placement={`${placementPrefix}-pick:${product.slug}`}
-                        variant="accent"
-                      />
-                      <Link to={`/product/${product.slug}`} className="link-arrow">
-                        Full product details <ArrowRight width={14} height={14} />
-                      </Link>
-                    </div>
-                  </div>
-                </article>
+                <DecisionProductCard
+                  key={pick.productSlug}
+                  product={product}
+                  label={pick.label}
+                  why={pick.why}
+                  watchOuts={pick.watchOuts}
+                  placement={`${placementPrefix}-pick:${product.slug}`}
+                />
               );
             })}
           </div>
