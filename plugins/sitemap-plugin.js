@@ -78,7 +78,7 @@ export function sitemapPlugin({
 
       const sitemap = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         ...urls.map(
           (u) =>
             `  <url>\n    <loc>${escapeXml(full(u.path))}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`,

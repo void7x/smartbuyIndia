@@ -15,6 +15,7 @@ import { truncate, formatDate } from '../utils/format.js';
 import Breadcrumbs from '../components/Breadcrumbs.jsx';
 import ComparisonTable from '../components/ComparisonTable.jsx';
 import ComparisonCard from '../components/ComparisonCard.jsx';
+import TwoProductCompare from '../components/TwoProductCompare.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import FAQSection from '../components/FAQSection.jsx';
 import DisclosureNotice from '../components/DisclosureNotice.jsx';
@@ -79,6 +80,7 @@ function ComparisonIndex() {
       </div>
 
       <div className="container section">
+        <TwoProductCompare />
         {grouped.map(([categoryName, items]) => (
           <section key={categoryName} className="section--tight" aria-labelledby={`cmp-${categoryName}`}>
             <h2 id={`cmp-${categoryName}`} style={{ fontSize: 'var(--fs-xl)', marginBottom: '16px' }}>

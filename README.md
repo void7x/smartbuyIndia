@@ -6,8 +6,7 @@ SmartBuyIndia is an independent Indian product-research and discovery website. I
 buying guides, product shortlists and side-by-side comparisons, then links out to **Amazon.in** so the
 reader completes the purchase with the retailer. The site never sells, stocks or ships anything.
 
-Version 1 is a **fully static site**: React + Vite, no backend, no database, no paid services, and it
-deploys to free GitHub Pages hosting.
+The site is a **fully static React + Vite application** with no backend, no database and no paid services. The `development/smartbuyindia-v2` branch is configured for a Render Static Site at the domain root; `main` retains the original GitHub Pages workflow as a safe backup.
 
 ---
 
@@ -15,7 +14,7 @@ deploys to free GitHub Pages hosting.
 
 ```bash
 npm install        # install dependencies (react, react-dom, react-router-dom, vite)
-npm run dev        # local dev server  -> http://localhost:5173/smartbuyindia/
+npm run dev        # local dev server  -> http://localhost:5173/
 npm run build      # production build  -> dist/
 npm run preview    # serve the production build locally for testing
 node scripts/smoke.build.mjs   # render every route headlessly and fail on any crash
@@ -37,7 +36,7 @@ No environment variables, no API keys, no `.env` file. Everything is configured 
 | Search | `src/utils/search.js`, `src/components/SearchOverlay.jsx`, `/search` | client-side, no service, no server |
 | SEO | `src/utils/seo.js`, `plugins/sitemap-plugin.js` | titles, meta, canonical, OG/Twitter, JSON-LD, generated `sitemap.xml` + `robots.txt` |
 | Analytics-ready | `src/utils/analytics.js` | typed events, currently console-only no-ops |
-| Deployment | `site.config.js`, `.github/workflows/deploy.yml` | GitHub Pages, zero extra services |
+| Deployment | `site.config.js`, `render.yaml` | Render Static Site on `development/smartbuyindia-v2`; `main` keeps the GitHub Pages workflow |
 
 ---
 
@@ -45,7 +44,8 @@ No environment variables, no API keys, no `.env` file. Everything is configured 
 
 ```text
 smartbuyindia/
-├── .github/workflows/deploy.yml    # GitHub Actions -> GitHub Pages
+├── .github/workflows/deploy.yml    # GitHub Pages workflow retained for main
+├── .github/workflows/verify-development.yml # Build + route smoke checks on the development branch
 ├── plugins/sitemap-plugin.js       # build-time sitemap.xml + robots.txt from src/data
 ├── scripts/
 │   ├── smoke.jsx                   # headless render of every route (test)
@@ -99,7 +99,7 @@ smartbuyindia/
 
 | Command | What it does |
 | --- | --- |
-| `npm run dev` | Vite dev server with HMR at `http://localhost:5173/smartbuyindia/` |
+| `npm run dev` | Vite dev server with HMR at `http://localhost:5173/` |
 | `npm run build` | Production build into `dist/` (also regenerates `sitemap.xml` + `robots.txt`) |
 | `npm run preview` | Serve `dist/` locally on port 4173 to test the production bundle |
 | `node scripts/smoke.build.mjs` | Render all 35 routes with `react-dom/server`; exits non-zero on any render crash or missing `<h1>` |
@@ -110,16 +110,15 @@ smartbuyindia/
 
 ### 5.1 Deployment paths — `site.config.js` (root)
 
-One file, three values, imported by `vite.config.js`, the sitemap generator **and** the app:
+The app, Vite and the sitemap generator read the same deployment configuration:
 
 ```js
-export const SITE_BASE = '/smartbuyindia/';   // base path; '/' for a custom domain at root
-export const SITE_URL  = '';                  // public origin, no trailing slash. '' until you own a domain
-export const ROUTER_MODE = 'hash';            // 'hash' (GitHub Pages safe) or 'browser'
+export const SITE_BASE = '/';       // Render static site at the domain root
+export const SITE_URL = '';          // Set the final public origin before launch
+export const ROUTER_MODE = 'browser'; // Render rewrite handles direct nested routes
 ```
 
-Because all three consumers read the same file, the base path can never drift between the build, the
-canonical tags and the sitemap.
+Render rewrites unknown paths to `/index.html`, allowing the React router to handle clean URLs such as `/product/...`, `/category/...` and `/guide/...`. Keep the branch's configured rewrite in `render.yaml` in sync if hosting settings change.
 
 ### 5.2 Brand & content — `src/config/*`
 
@@ -157,43 +156,24 @@ normal and expected.
 
 ---
 
-## 6. GitHub Pages deployment
+## 6. Current development deployment (Render)
 
-### Recommended: GitHub Actions (already configured)
+The active development branch is configured for **Render Static Site** with clean browser URLs:
 
-1. Create the repository and push this folder.
-2. In the repo: **Settings → Pages → Build and deployment → Source: “GitHub Actions”**.
-3. If the repository is not named `smartbuyindia`, set `SITE_BASE = '/<repo-name>/'` in
-   `site.config.js` first.
-4. Push to `main`. `.github/workflows/deploy.yml` builds with Node 20, uploads `dist/` and publishes
-   it. The site is live at `https://<user>.github.io/<repo>/`.
+- Branch: `development/smartbuyindia-v2`
+- Build command: `npm ci && npm run build`
+- Publish directory: `dist`
+- Rewrite: `/*` → `/index.html` so direct visits and refreshes on nested routes work.
+- Local dev URL: `http://localhost:5173/`
 
-### Manual alternative (no Actions)
+The deployment configuration lives in `site.config.js` and `render.yaml`. Keep `SITE_BASE = '/'` and `ROUTER_MODE = 'browser'` for Render's root URL setup. The `.github/workflows/deploy.yml` GitHub Pages workflow is retained for the safe `main` branch; do not use it as the deployment instructions for this development branch.
 
-```bash
-npm run build
-npx gh-pages -d dist          # or push dist/ to an orphan `gh-pages` branch by hand
-```
+### Staging and launch safeguards
 
-Then set **Settings → Pages → Source: “Deploy from a branch” → `gh-pages` / `/ (root)`**.
-
-### Why URLs use a hash (`/#/product/…`)
-
-GitHub Pages is a static file host: a direct request to `/product/example-air-fryer` would return
-404 because no such file exists. `ROUTER_MODE = 'hash'` keeps the route in the URL fragment, which the
-server never sees — so **every route works on hard refresh, shared links and 404-free deep links with
-zero server configuration**. The sitemap emits the same `#/…` form, so what crawlers index is what
-users get.
-
-### If you later want clean URLs (`/product/…`)
-
-Two supported paths, both free:
-
-1. **Custom domain + any host that supports rewrites** (Cloudflare Pages, Netlify, Vercel free tiers):
-   set `ROUTER_MODE = 'browser'` and `SITE_BASE = '/'`, add a catch-all rewrite to `index.html`.
-2. **Stay on GitHub Pages**: keep `ROUTER_MODE = 'browser'`; the included `public/404.html` stores the
-   requested path in `sessionStorage` and bounces to the app, and `src/pages/RedirectHandler.jsx`
-   restores the route once. Works, but adds one visible redirect hop — hence hash mode as the default.
+- `CONTENT_MODE = 'demo'` keeps this staging build out of search with `noindex,nofollow` metadata and generates an empty sitemap.
+- Do not flip staging to production mode merely to expose draft products. Publish only records that passed the editorial, listing and image-rights checks.
+- Before the public launch, configure the final public origin in `site.config.js`, complete the contact and legal pages, verify affiliate disclosures, and deliberately enable indexing only on the intended production site.
+- Run `npm run build` and `node scripts/smoke.build.mjs` after code or data changes.
 
 ---
 
@@ -393,7 +373,7 @@ Re-run the smoke test after any data-layer change: `node scripts/smoke.build.mjs
 6. Add real OG/product images per `public/images/products/README.md`.
 7. Have `/disclosure`, `/privacy` and `/terms` reviewed and dated by a qualified professional.
 8. Connect analytics via `setAnalyticsTransport` if you want reporting.
-9. Enable the GitHub Actions deployment (§6) and open the Pages URL.
+9. Verify the Render deployment and nested-route refreshes; keep staging noindex until the public launch checklist is complete.
 
 ---
 

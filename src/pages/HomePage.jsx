@@ -103,8 +103,8 @@ export default function HomePage() {
               <Link to="/categories" className="btn btn--outline btn--lg">
                 Explore categories <ArrowRight width={16} height={16} />
               </Link>
-              <Link to="/compare" className="btn btn--ghost btn--lg hero__ghost-btn">
-                Compare products
+              <Link to="/compare#compare-two" className="btn btn--ghost btn--lg hero__ghost-btn">
+                Compare two products
               </Link>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-3">
+          <div className="grid grid-3 home-category-grid">
             {featuredCategories.map((category) => (
               <CategoryCard key={category.id} category={category} />
             ))}
@@ -242,7 +242,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-3">
+          <div className="grid grid-3 home-guide-grid">
             {homepageGuides.map((guide) => (
               <GuideCard key={guide.id} guide={guide} />
             ))}
@@ -272,7 +272,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-3">
+          <div className="grid grid-3 home-product-grid">
             {homepageProducts.map((product) => (
               <ProductCard key={product.id} product={product} placement="home-featured" />
             ))}
