@@ -669,3 +669,108 @@ input:focus, select:focus, textarea:focus {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   SmartBuyIndia wordmark: a custom discovery emblem + expressive typography
+   -------------------------------------------------------------------------- */
+.brand {
+  gap: 12px;
+  transition: color 180ms ease;
+}
+.site-header .brand__mark,
+.footer__logo .brand__mark {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  overflow: visible;
+  filter: drop-shadow(0 5px 0 rgba(10, 3, 30, .16)) drop-shadow(0 10px 16px rgba(255, 138, 183, .12));
+  transition: transform 230ms cubic-bezier(.2,.75,.25,1), filter 230ms ease;
+}
+.brand:hover .brand__mark {
+  transform: rotate(-6deg) scale(1.055);
+  filter: drop-shadow(0 6px 0 rgba(10, 3, 30, .12)) drop-shadow(0 12px 20px rgba(255, 138, 183, .24));
+}
+.brand__text {
+  gap: 5px;
+  overflow: visible;
+}
+.brand__name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: clamp(1.08rem, 1.2vw, 1.3rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.065em;
+  white-space: nowrap;
+  font-feature-settings: "ss01" on;
+}
+.brand__word-smart { color: #fff; }
+.brand__word-buy {
+  position: relative;
+  display: inline-block;
+  margin-inline: 3px 4px;
+  padding: 4px 6px 5px;
+  color: #32134f;
+  background: #ffd43b;
+  border-radius: 7px 10px 7px 9px;
+  font-style: normal;
+  font-size: .88em;
+  line-height: .88;
+  letter-spacing: -.06em;
+  transform: rotate(-2.5deg) translateY(-1px);
+  box-shadow: 0 2px 0 rgba(12, 4, 30, .2);
+}
+.brand__word-india {
+  color: #ff8ab7;
+  letter-spacing: -.07em;
+}
+.brand__tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,.72);
+  font-size: .59rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: .115em;
+}
+.site-header .brand__tagline::before,
+.footer__logo .brand__tagline::before {
+  content: '';
+  display: inline-block;
+  width: 17px;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg,#ff665b 0 34%,#ffd43b 34% 67%,#9ae9d2 67% 100%);
+}
+.footer__logo .brand__name { font-size: 1.2rem; }
+.footer__logo .brand__word-smart { color: #fff; }
+.footer__logo .brand__word-buy { color: #32134f; background: #ffd43b; }
+.footer__logo .brand__word-india { color: #ff8ab7; }
+.footer__logo .brand__tagline { color: #c9b9df; }
+.drawer__head .brand__name { color: #32134f; }
+.drawer__head .brand__word-smart { color: #32134f; }
+.drawer__head .brand__word-buy { color: #32134f; }
+.drawer__head .brand__word-india { color: #db3e66; }
+.drawer__head .brand__tagline { color: #74647f; }
+.drawer__head .brand__mark { width: 40px; height: 40px; flex-basis: 40px; }
+.site-header .brand:focus-visible,
+.footer__logo:focus-visible { border-radius: 14px; }
+
+@media (max-width: 820px) {
+  .site-header .brand { gap: 9px; }
+  .site-header .brand__mark { width: 41px; height: 41px; flex-basis: 41px; }
+  .site-header .brand__name { font-size: 1.1rem; }
+  .site-header .brand__tagline { font-size: .54rem; letter-spacing: .09em; }
+}
+@media (max-width: 400px) {
+  .site-header .brand__mark { width: 37px; height: 37px; flex-basis: 37px; }
+  .site-header .brand__name { font-size: 1rem; }
+  .site-header .brand__tagline { font-size: .5rem; letter-spacing: .06em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand__mark, .brand, .brand__word-buy { transition-duration: .01ms !important; }
+  .brand:hover .brand__mark { transform: none; }
+}
