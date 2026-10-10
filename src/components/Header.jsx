@@ -77,10 +77,10 @@ export default function Header() {
             aria-label={`${SITE_NAME} — home`}
             onClick={() => trackInternalClick('logo', '/')}
           >
-            <BrandMark className="brand__mark" />
+            <BrandMark className="brand__mark" size={44} />
             <span className="brand__text">
-              <span className="brand__name">
-                Smart<em>Buy</em>India
+              <span className="brand__name" aria-label="SmartBuyIndia">
+                <span className="brand__word-smart">Smart</span><em className="brand__word-buy">Buy</em><span className="brand__word-india">India</span>
               </span>
               <span className="brand__tagline">{SITE_TAGLINE}</span>
             </span>
@@ -133,10 +133,10 @@ export default function Header() {
         <div className="drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Site menu">
           <div className="drawer__head">
             <Link to="/" className="brand" aria-label={`${SITE_NAME} — home`}>
-              <BrandMark className="brand__mark" size={30} />
+              <BrandMark className="brand__mark" size={40} />
               <span className="brand__text">
                 <span className="brand__name">
-                  Smart<em>Buy</em>India
+                  <span className="brand__word-smart">Smart</span><em className="brand__word-buy">Buy</em><span className="brand__word-india">India</span>
                 </span>
                 <span className="brand__tagline">{SITE_TAGLINE}</span>
               </span>
