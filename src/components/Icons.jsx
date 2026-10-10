@@ -33,28 +33,28 @@ export function BrandMark({ size = 46, ...props }) {
     >
       <path
         d="M32 2.8 38.3 10.9 48.2 6.7 49.1 17.6 59.3 22 53.6 32 59.3 42 49.1 46.4 48.2 57.3 38.3 53.1 32 61.2 25.7 53.1 15.8 57.3 14.9 46.4 4.7 42 10.4 32 4.7 22 14.9 17.6 15.8 6.7 25.7 10.9Z"
-        fill="#FFD43B"
-        stroke="#FFF9E9"
+        fill="#D8C48F"
+        stroke="#F7F5EF"
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
       <path
         d="M32 8 36 14.1 43.4 11 44 19.2 51.8 22.5 47.5 30 51.8 37.5 44 40.8 43.4 49 36 45.9 32 52 28 45.9 20.6 49 20 40.8 12.2 37.5 16.5 30 12.2 22.5 20 19.2 20.6 11 28 14.1Z"
-        fill="#FF8AB7"
+        fill="#B8CCC2"
         opacity=".65"
       />
-      <circle cx="30" cy="30" r="15.2" fill="#5426D9" stroke="#32134F" strokeWidth="1.5" />
+      <circle cx="30" cy="30" r="15.2" fill="#385C55" stroke="#294740" strokeWidth="1.5" />
       <circle cx="28.7" cy="28.1" r="7.1" fill="none" stroke="#FFFFFF" strokeWidth="3.2" />
       <path d="m34 33.5 7.2 7.2" fill="none" stroke="#FFFFFF" strokeWidth="4.2" strokeLinecap="round" />
-      <path d="m24.9 28.2 2.6 2.6 5-5.1" fill="none" stroke="#9AE9D2" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="m24.9 28.2 2.6 2.6 5-5.1" fill="none" stroke="#BAD0C3" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
       <path
         d="M48 5.8 50.2 11.3 55.7 13.5 50.2 15.7 48 21.2 45.8 15.7 40.3 13.5 45.8 11.3Z"
-        fill="#FF665B"
-        stroke="#FFF8EF"
+        fill="#C78378"
+        stroke="#F7F5EF"
         strokeWidth="1"
         strokeLinejoin="round"
       />
-      <circle cx="13.2" cy="49.3" r="2.3" fill="#9AE9D2" />
+      <circle cx="13.2" cy="49.3" r="2.3" fill="#BAD0C3" />
     </svg>
   );
 }
