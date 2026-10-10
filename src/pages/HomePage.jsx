@@ -1,9 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import useSeo from '../hooks/useSeo.js';
-import { SITE_TAGLINE, SITE_DESCRIPTION } from '../config/site.js';
-import { AMAZON_ASSOCIATE_ID } from '../config/affiliate.js';
+import { SITE_DESCRIPTION, SITE_TAGLINE } from '../config/site.js';
 import { categories } from '../data/categories.js';
-import { featuredProducts } from '../data/products.js';
+import { products, featuredProducts } from '../data/products.js';
 import { guidesByRecency } from '../data/buyingGuides.js';
 import { comparisons } from '../data/comparisons.js';
 import { getStats } from '../data/index.js';
@@ -14,24 +13,39 @@ import ProductCard from '../components/ProductCard.jsx';
 import GuideCard from '../components/GuideCard.jsx';
 import ComparisonCard from '../components/ComparisonCard.jsx';
 import DisclosureNotice from '../components/DisclosureNotice.jsx';
-import { ArrowRight, ShieldIcon, ScaleIcon, BookIcon, SearchIcon } from '../components/Icons.jsx';
+import {
+  ArrowRight,
+  BookIcon,
+  CheckIcon,
+  ScaleIcon,
+  SearchIcon,
+  ShieldIcon,
+  SparkleIcon,
+  SwapIcon,
+} from '../components/Icons.jsx';
 
 export default function HomePage() {
   const stats = getStats();
-  const featuredCategories = categories.filter((c) => c.featured);
-  const homepageProducts = (featuredProducts.length ? featuredProducts : []).slice(0, 6);
+  const featuredCategories = categories.filter((category) => category.featured && !category.comingSoon).slice(0, 5);
+  const homepageProducts = (featuredProducts.length ? featuredProducts : products).slice(0, 4);
   const homepageGuides = guidesByRecency.slice(0, 3);
   const homepageComparisons = comparisons.slice(0, 2);
+  const leadGuide = homepageGuides[0];
+  const leadComparison = homepageComparisons[0];
+  const leadCategory = featuredCategories[0];
 
   useSeo({
-    title: null, // -> "SmartBuyIndia — Smart choices. Better buys."
+    title: null,
     description: SITE_DESCRIPTION,
     path: '/',
     schema: [
       websiteSchema(),
-      itemListSchema('Product categories on SmartBuyIndia', categories
-        .filter((c) => !c.comingSoon)
-        .map((c) => ({ name: c.name, path: `/category/${c.slug}` }))),
+      itemListSchema(
+        'Product categories on SmartBuyIndia',
+        categories
+          .filter((category) => !category.comingSoon)
+          .map((category) => ({ name: category.name, path: '/category/' + category.slug })),
+      ),
     ],
   });
 
@@ -39,281 +53,315 @@ export default function HomePage() {
   const onSubmitSearch = (event) => {
     event.preventDefault();
     const value = String(new FormData(event.currentTarget).get('q') || '').trim();
-    if (value) navigate(`/search?q=${encodeURIComponent(value)}`);
+    if (value) navigate('/search?q=' + encodeURIComponent(value));
   };
 
   return (
     <>
-      {/* ---------------------------------------------------------------- Hero */}
-      <section className="hero" aria-labelledby="hero-heading">
-        <div className="container hero__inner">
-          <div>
-            <p className="eyebrow" style={{ color: 'var(--accent-500)' }}>
-              Independent product research for India
-            </p>
-            <h1 id="hero-heading">Find smarter products for everyday life in India.</h1>
-            <p className="hero__lede">
-              Compare products, explore buying guides, and discover useful picks before you buy.
-              Every shortlist explains its reasoning — then links out to Amazon.in so you can
-              complete the purchase yourself.
-            </p>
-
-            <div className="btn-row">
-              <Link to="/categories" className="btn btn--accent btn--lg">
-                Explore products <ArrowRight width={16} height={16} />
-              </Link>
-              <Link to="/buying-guides" className="btn btn--outline btn--lg">
-                View buying guides
-              </Link>
+      <section className="sb-hero" aria-labelledby="hero-heading">
+        <div className="sb-hero__texture" aria-hidden="true" />
+        <div className="container sb-hero__inner">
+          <div className="sb-hero__copy">
+            <div className="sb-hero__eyebrow">
+              <span className="sb-hero__eyebrow-mark" aria-hidden="true" />
+              Smart choices. Better buys.
             </div>
+            <div className="sb-hero__meta">
+              <span>Independent product research</span>
+              <span>For Indian shoppers</span>
+            </div>
+            <h1 id="hero-heading">
+              Make your next buy <em>make sense.</em>
+            </h1>
+            <p className="sb-hero__lede">
+              Cut through the noise with practical buying guides, thoughtful comparisons, and
+              product shortlists that explain the trade-offs before you head to the retailer.
+            </p>
 
-            <ul className="hero__trust">
-              <li>
-                <BookIcon />
-                <span>
-                  <strong>Original editorial, not copied listings.</strong> Guides are written around
-                  how products are actually used in Indian homes, kitchens and commutes.
-                </span>
-              </li>
-              <li>
-                <ScaleIcon />
-                <span>
-                  <strong>Reasoning you can check.</strong> Every recommendation names the situation
-                  it suits — no unexplained rankings, no invented ratings.
-                </span>
-              </li>
-              <li>
-                <ShieldIcon />
-                <span>
-                  <strong>Clear affiliate disclosure.</strong> We may earn a commission on qualifying
-                  purchases. It never costs you more and never buys placement.
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="hero__panel">
-            <p className="hero__panel-title">Start with a search</p>
-            <form className="hero__search" onSubmit={onSubmitSearch} role="search">
-              <label className="sr-only" htmlFor="hero-search">
-                Search products, categories and buying guides
+            <form className="sb-search" onSubmit={onSubmitSearch} role="search">
+              <label className="sr-only" htmlFor="sb-home-search">
+                Search products, categories, comparisons and buying guides
               </label>
+              <SearchIcon className="sb-search__icon" width={20} height={20} aria-hidden="true" />
               <input
-                id="hero-search"
+                id="sb-home-search"
                 name="q"
                 type="search"
-                placeholder="Try “air fryer for small kitchen”"
+                placeholder="What are you trying to find?"
                 autoComplete="off"
               />
-              <button type="submit" className="btn btn--accent" aria-label="Search">
-                <SearchIcon width={18} height={18} />
+              <button className="btn btn--accent sb-search__button" type="submit">
+                Search <ArrowRight width={16} height={16} />
               </button>
             </form>
 
-            <ul className="hero__stats">
-              <li>
-                <b>{stats.categories}</b>
-                <span>Categories</span>
-              </li>
-              <li>
-                <b>{stats.products}</b>
-                <span>Products</span>
-              </li>
-              <li>
-                <b>{stats.guides}</b>
-                <span>Guides</span>
-              </li>
-            </ul>
-
-            <p className="text-xs" style={{ color: '#b6ccc5', marginTop: '16px', lineHeight: 1.55 }}>
-              We are a discovery and research website — we do not sell, ship or handle payments.
-              Purchases are completed on the retailer&rsquo;s own site.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------- Featured categories */}
-      <section className="section" aria-labelledby="categories-heading">
-        <div className="container">
-          <div className="section-head">
-            <div className="section-head__text">
-              <p className="eyebrow">Browse by category</p>
-              <h2 id="categories-heading">What are you shopping for?</h2>
-              <p>
-                Five categories are live in this first release, each with its own product shortlists,
-                subcategories and buying guides.
-              </p>
-            </div>
-            <Link to="/categories" className="link-arrow">
-              All categories <ArrowRight width={14} height={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-3">
-            {featuredCategories.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------- Featured buying guides */}
-      <section className="section section--alt" aria-labelledby="guides-heading">
-        <div className="container">
-          <div className="section-head">
-            <div className="section-head__text">
-              <p className="eyebrow">Buying guides</p>
-              <h2 id="guides-heading">Research that answers the awkward questions</h2>
-              <p>
-                Each guide works through what to look for, the specifications that matter, what to
-                avoid, and the most common questions Indian buyers ask.
-              </p>
-            </div>
-            <Link to="/buying-guides" className="link-arrow">
-              All buying guides <ArrowRight width={14} height={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-3">
-            {homepageGuides.map((guide) => (
-              <GuideCard key={guide.id} guide={guide} />
-            ))}
-          </div>
-
-          <p className="inline-note" style={{ marginTop: '20px', maxWidth: '86ch' }}>
-            Guides are demonstration content in this build. They are structured as editorial pages —
-            they are not live market rankings, award lists or test results, and they do not claim any
-            current position for a product.
-          </p>
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------- Featured products */}
-      <section className="section" aria-labelledby="products-heading">
-        <div className="container">
-          <div className="section-head">
-            <div className="section-head__text">
-              <p className="eyebrow">Product shortlists</p>
-              <h2 id="products-heading">Products worth reading about</h2>
-              <p>
-                Each entry includes an editorial summary, who it suits, who should look elsewhere,
-                and the practical things to check before you order.
-              </p>
-            </div>
-            <Link to="/categories" className="link-arrow">
-              Browse all products <ArrowRight width={14} height={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-3">
-            {homepageProducts.map((product) => (
-              <ProductCard key={product.id} product={product} placement="home-featured" />
-            ))}
-          </div>
-
-          <div style={{ marginTop: '24px' }}>
-            <DisclosureNotice compact />
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------- Comparisons */}
-      {homepageComparisons.length > 0 && (
-        <section className="section section--alt" aria-labelledby="compare-heading">
-          <div className="container">
-            <div className="section-head">
-              <div className="section-head__text">
-                <p className="eyebrow">Side by side</p>
-                <h2 id="compare-heading">Comparisons, not rankings</h2>
-                <p>
-                  Our comparison tables label each option with the situation it fits — budget,
-                  household size, commute type — and always show the reasoning next to the label.
-                </p>
+            {featuredCategories.length > 0 && (
+              <div className="sb-hero__quicklinks" aria-label="Popular categories">
+                <span>Explore</span>
+                {featuredCategories.slice(0, 4).map((category) => (
+                  <Link key={category.slug} to={'/category/' + category.slug}>
+                    {category.name}
+                  </Link>
+                ))}
               </div>
-              <Link to="/compare" className="link-arrow">
-                All comparisons <ArrowRight width={14} height={14} />
+            )}
+
+            <div className="sb-hero__actions">
+              <Link to="/categories" className="btn btn--accent btn--lg">
+                Browse categories <ArrowRight width={16} height={16} />
+              </Link>
+              <Link to="/buying-guides" className="sb-hero__text-link">
+                Read buying guides <ArrowRight width={14} height={14} />
               </Link>
             </div>
 
-            <div className="grid grid-2">
+            <p className="sb-hero__trust">
+              <ShieldIcon width={16} height={16} aria-hidden="true" />
+              Independent research. Transparent affiliate links. Purchases happen on Amazon.in.
+            </p>
+          </div>
+
+          <aside className="sb-hero__visual" aria-label="Explore the SmartBuyIndia research library">
+            <div className="sb-visual-orbit sb-visual-orbit--one" aria-hidden="true" />
+            <div className="sb-visual-orbit sb-visual-orbit--two" aria-hidden="true" />
+            <div className="sb-visual-card sb-visual-card--main">
+              <div className="sb-visual-card__topline">
+                <span className="sb-mini-label"><SparkleIcon width={13} height={13} /> THE RESEARCH DESK</span>
+                <span className="sb-visual-card__index">SBI / 01</span>
+              </div>
+              <p className="sb-visual-card__statement">A good choice starts with a better question.</p>
+              <div className="sb-visual-card__rule" />
+              <div className="sb-visual-card__steps">
+                <div><span>01</span><strong>Understand your needs</strong><CheckIcon width={16} height={16} /></div>
+                <div><span>02</span><strong>Compare the trade-offs</strong><CheckIcon width={16} height={16} /></div>
+                <div><span>03</span><strong>Check retailer details</strong><ArrowRight width={16} height={16} /></div>
+              </div>
+              {leadGuide && (
+                <Link to={'/guide/' + leadGuide.slug} className="sb-visual-card__guide">
+                  <span className="sb-visual-card__guide-kicker">
+                    {leadGuide.isDemo ? 'SAMPLE BUYING GUIDE' : 'FEATURED BUYING GUIDE'}
+                  </span>
+                  <span className="sb-visual-card__guide-title">{leadGuide.title}</span>
+                  <span className="sb-visual-card__guide-link">Explore the guide <ArrowRight width={14} height={14} /></span>
+                </Link>
+              )}
+            </div>
+            <div className="sb-visual-sticker sb-visual-sticker--amber" aria-hidden="true">
+              THINK<br />BEFORE<br />YOU BUY<span>↗</span>
+            </div>
+            <div className="sb-visual-sticker sb-visual-sticker--coral" aria-hidden="true">LESS HYPE.<br />MORE CONTEXT.</div>
+            <div className="sb-visual-caption">RESEARCH · COMPARE · DECIDE</div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="sb-principles" aria-label="How SmartBuyIndia helps">
+        <div className="container sb-principles__grid">
+          <article>
+            <span className="sb-principles__number">01</span>
+            <div><h2>Use-case first</h2><p>Understand what fits your needs before comparing products.</p></div>
+          </article>
+          <article>
+            <span className="sb-principles__number">02</span>
+            <div><h2>Clear trade-offs</h2><p>Compare practical criteria instead of relying on a single ranking.</p></div>
+          </article>
+          <article>
+            <span className="sb-principles__number">03</span>
+            <div><h2>Useful context</h2><p>Consider space, routine, maintenance, and everyday use in India.</p></div>
+          </article>
+          <article>
+            <span className="sb-principles__number">04</span>
+            <div><h2>Open disclosure</h2><p>Understand how retailer links and affiliate commissions work.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section className="section sb-section" aria-labelledby="research-heading">
+        <div className="container">
+          <div className="sb-section-head">
+            <div>
+              <p className="sb-kicker"><span /> Your research desk</p>
+              <h2 id="research-heading">Start with the question.<br /><em>Find your answer.</em></h2>
+              <p>Guides, comparisons, and category research in one considered place.</p>
+            </div>
+            <Link to="/buying-guides" className="sb-section-link">Explore the library <ArrowRight width={15} height={15} /></Link>
+          </div>
+
+          <div className="sb-bento">
+            {leadGuide && (
+              <article className="sb-bento-card sb-bento-card--lead">
+                <div className="sb-bento-card__label"><BookIcon width={15} height={15} /> BUYING GUIDE {leadGuide.isDemo ? '· SAMPLE CONTENT' : ''}</div>
+                <div className="sb-bento-card__lead-content">
+                  <div>
+                    <p className="sb-bento-card__index">A MORE INFORMED START</p>
+                    <h3>{leadGuide.title}</h3>
+                    <p>{leadGuide.metaDescription}</p>
+                  </div>
+                  <Link to={'/guide/' + leadGuide.slug} className="sb-round-link" aria-label={'Read ' + leadGuide.title}>
+                    <ArrowRight width={21} height={21} />
+                  </Link>
+                </div>
+                <div className="sb-bento-card__lead-footer">
+                  <span>{leadGuide.readingTimeMinutes ? leadGuide.readingTimeMinutes + ' min read' : 'Practical guide'}</span>
+                  <span>{(leadGuide.whatToLookFor || []).length} decision criteria</span>
+                </div>
+                <div className="sb-bento-card__decor" aria-hidden="true">01</div>
+              </article>
+            )}
+
+            {leadComparison && (
+              <article className="sb-bento-card sb-bento-card--compare">
+                <div className="sb-bento-card__label"><SwapIcon width={15} height={15} /> SIDE-BY-SIDE COMPARISON</div>
+                <h3>{leadComparison.title}</h3>
+                <p>{leadComparison.intro}</p>
+                <div className="sb-compare-lines" aria-hidden="true"><span /><span /><span /></div>
+                <Link to={'/compare/' + leadComparison.slug} className="sb-inline-action">
+                  Explore the comparison <ArrowRight width={15} height={15} />
+                </Link>
+                {leadComparison.isDemo && <span className="sb-content-note">Sample comparison</span>}
+              </article>
+            )}
+
+            {leadCategory && (
+              <article className="sb-bento-card sb-bento-card--category" style={{ '--sb-category-accent': leadCategory.accent }}>
+                <span className="sb-bento-card__label">CATEGORY SPOTLIGHT</span>
+                <span className="sb-category-glyph" aria-hidden="true">{leadCategory.name.slice(0, 1)}</span>
+                <h3>{leadCategory.name}</h3>
+                <p>{leadCategory.tagline}</p>
+                <Link to={'/category/' + leadCategory.slug} className="sb-inline-action">
+                  Explore the category <ArrowRight width={15} height={15} />
+                </Link>
+              </article>
+            )}
+
+            <article className="sb-bento-card sb-bento-card--method">
+              <div className="sb-bento-card__label"><ScaleIcon width={15} height={15} /> THE SMARTBUY APPROACH</div>
+              <h3>Less noise.<br /><span>More useful context.</span></h3>
+              <div className="sb-method-list">
+                <Link to="/categories"><span>01</span><strong>Explore a category</strong><ArrowRight width={15} height={15} /></Link>
+                <Link to="/buying-guides"><span>02</span><strong>Learn what matters</strong><ArrowRight width={15} height={15} /></Link>
+                <Link to="/compare"><span>03</span><strong>Compare options</strong><ArrowRight width={15} height={15} /></Link>
+              </div>
+              <div className="sb-bento-card__method-decoration" aria-hidden="true">SBI</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="sb-campaign" aria-labelledby="campaign-heading">
+        <div className="container sb-campaign__inner">
+          <div className="sb-campaign__intro">
+            <p className="sb-campaign__kicker">A NOTE FOR THE CURIOUS SHOPPER</p>
+            <h2 id="campaign-heading">Don't buy the noise.<br /><em>Buy what fits your life.</em></h2>
+            <p>Product pages can be crowded with specifications and opinions. Start with your actual needs, learn the trade-offs, and check the retailer's current details before deciding.</p>
+            <Link to="/buying-guides" className="btn sb-campaign__button">
+              Build your shortlist <ArrowRight width={16} height={16} />
+            </Link>
+          </div>
+          <div className="sb-campaign__tiles">
+            <Link to="/categories" className="sb-campaign-tile sb-campaign-tile--coral">
+              <span>01 / DISCOVER</span><strong>Start with<br />your needs.</strong><ArrowRight width={20} height={20} />
+            </Link>
+            <Link to="/compare" className="sb-campaign-tile sb-campaign-tile--cobalt">
+              <span>02 / COMPARE</span><strong>See the<br />trade-offs.</strong><ArrowRight width={20} height={20} />
+            </Link>
+            <Link to="/deals" className="sb-campaign-tile sb-campaign-tile--lime">
+              <span>03 / CHECK</span><strong>Review the<br />retailer details.</strong><ArrowRight width={20} height={20} />
+            </Link>
+          </div>
+          <div className="sb-campaign__scribble" aria-hidden="true">CHOOSE<br />WITH<br />CONTEXT ↗</div>
+        </div>
+      </section>
+
+      <section className="section sb-section" aria-labelledby="categories-heading">
+        <div className="container">
+          <div className="sb-section-head sb-section-head--compact">
+            <div>
+              <p className="sb-kicker"><span /> Browse by interest</p>
+              <h2 id="categories-heading">Find your <em>starting point.</em></h2>
+              <p>Choose an area to explore the options and decisions that matter to you.</p>
+            </div>
+            <Link to="/categories" className="sb-section-link">All categories <ArrowRight width={15} height={15} /></Link>
+          </div>
+          <div className="sb-category-grid">
+            {featuredCategories.slice(0, 4).map((category, index) => (
+              <CategoryCard key={category.id} category={category} className={'sb-category-card sb-category-card--' + (index + 1)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section sb-section sb-section--tint" aria-labelledby="products-heading">
+        <div className="container">
+          <div className="sb-section-head">
+            <div>
+              <p className="sb-kicker"><span /> Product profiles</p>
+              <h2 id="products-heading">A shortlist is a <em>starting point.</em></h2>
+              <p>Explore individual product profiles, the features worth checking, and the practical trade-offs to consider.</p>
+            </div>
+            <Link to="/categories" className="sb-section-link">Explore products <ArrowRight width={15} height={15} /></Link>
+          </div>
+          <div className="sb-product-grid">
+            {homepageProducts.map((product) => (
+              <ProductCard key={product.id} product={product} placement="home-featured" className="sb-product-card" />
+            ))}
+          </div>
+          <DisclosureNotice compact className="sb-disclosure" />
+        </div>
+      </section>
+
+      <section className="section sb-section" aria-labelledby="guides-heading">
+        <div className="container">
+          <div className="sb-section-head sb-section-head--compact">
+            <div>
+              <p className="sb-kicker"><span /> Read before you choose</p>
+              <h2 id="guides-heading">Good questions make <em>better guides.</em></h2>
+              <p>Plain-language guidance for evaluating the choices in front of you.</p>
+            </div>
+            <Link to="/buying-guides" className="sb-section-link">All buying guides <ArrowRight width={15} height={15} /></Link>
+          </div>
+          <div className="sb-guide-grid">
+            {homepageGuides.map((guide, index) => (
+              <GuideCard key={guide.id} guide={guide} className={'sb-guide-card sb-guide-card--' + (index + 1)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {homepageComparisons.length > 0 && (
+        <section className="section sb-section sb-section--tint" aria-labelledby="comparisons-heading">
+          <div className="container">
+            <div className="sb-section-head sb-section-head--compact">
+              <div>
+                <p className="sb-kicker"><span /> Side by side</p>
+                <h2 id="comparisons-heading">Compare the things <em>that matter.</em></h2>
+                <p>Understand the differences between options and decide which trade-offs work for you.</p>
+              </div>
+              <Link to="/compare" className="sb-section-link">All comparisons <ArrowRight width={15} height={15} /></Link>
+            </div>
+            <div className="sb-comparison-grid">
               {homepageComparisons.map((comparison) => (
-                <ComparisonCard key={comparison.id} comparison={comparison} />
+                <ComparisonCard key={comparison.id} comparison={comparison} className="sb-comparison-card" />
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* ------------------------------------------------------- How it works */}
-      <section className="section" aria-labelledby="how-heading">
-        <div className="container container--narrow">
-          <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center' }}>
-            <div className="section-head__text">
-              <p className="eyebrow" style={{ justifyContent: 'center' }}>
-                How SmartBuyIndia works
-              </p>
-              <h2 id="how-heading">Three steps, no pressure</h2>
-            </div>
+      <section className="sb-closing">
+        <div className="container sb-closing__inner">
+          <div>
+            <p className="sb-kicker"><span /> Smart choices start here</p>
+            <h2>{SITE_TAGLINE}</h2>
+            <p>Research the category, compare your options, then check current price and availability on the retailer's website.</p>
           </div>
-
-          <ol className="grid grid-3" style={{ listStyle: 'none', padding: 0, counterReset: 'step' }}>
-            {[
-              {
-                title: 'Research the category',
-                body: 'Read a buying guide to understand what actually matters — capacity, socket rating, battery runtime, floor protection — before you look at any specific product.',
-              },
-              {
-                title: 'Compare the shortlist',
-                body: 'Use a comparison table to see how the options differ on the criteria that matter to your household, with a stated reason for each label.',
-              },
-              {
-                title: 'Buy on Amazon.in',
-                body: 'Click through to the retailer to check the live price and availability, and complete the purchase there. We never take payment or handle delivery.',
-              },
-            ].map((step) => (
-              <li key={step.title} className="panel" style={{ counterIncrement: 'step' }}>
-                <p className="card__meta">Step</p>
-                <h3 style={{ fontSize: 'var(--fs-lg)', marginBottom: '8px' }}>{step.title}</h3>
-                <p className="card__text">{step.body}</p>
-              </li>
-            ))}
-          </ol>
-
-          <div className="callout callout--info" style={{ marginTop: '32px' }}>
-            <span className="callout__title">About our links</span>
-            SmartBuyIndia is an independent research website. We are not Amazon, we do not sell
-            anything, and we do not claim that Amazon endorses our recommendations. We participate
-            in the Amazon Associates programme, so some links carry our tracking ID (
-            <code>{AMAZON_ASSOCIATE_ID}</code>) and we may earn a qualifying commission — at no
-            additional cost to you. <Link to="/disclosure">Full disclosure</Link>.
-          </div>
+          <Link to="/categories" className="btn btn--accent btn--lg">
+            Start exploring <ArrowRight width={16} height={16} />
+          </Link>
         </div>
-      </section>
-
-      {/* ------------------------------------------------------------- Footer CTA */}
-      <section className="section section--tight" aria-labelledby="cta-heading">
-        <div className="container">
-          <div className="panel panel--tinted" style={{ textAlign: 'center', padding: '40px 24px' }}>
-            <h2 id="cta-heading" style={{ marginBottom: '8px' }}>
-              {SITE_TAGLINE}
-            </h2>
-            <p className="text-muted" style={{ maxWidth: '60ch', marginInline: 'auto', marginBottom: '24px' }}>
-              Start with the category you are shopping in, or search for the specific product type
-              you have in mind.
-            </p>
-            <div className="btn-row" style={{ justifyContent: 'center' }}>
-              <Link to="/categories" className="btn">
-                Explore products
-              </Link>
-              <Link to="/buying-guides" className="btn btn--outline">
-                Read a buying guide
-              </Link>
-              <Link to="/deals" className="btn btn--ghost">
-                See verified deals
-              </Link>
-            </div>
-          </div>
+        <div className="container sb-closing__disclosure">
+          <p><ShieldIcon width={15} height={15} /> SmartBuyIndia is independent and may earn a commission from qualifying affiliate purchases. Product and pricing information should be checked on the retailer's site.</p>
+          <Link to="/disclosure">Read our disclosure <ArrowRight width={13} height={13} /></Link>
         </div>
       </section>
     </>
