@@ -774,3 +774,7 @@ input:focus, select:focus, textarea:focus {
   .brand__mark, .brand, .brand__word-buy { transition-duration: .01ms !important; }
   .brand:hover .brand__mark { transform: none; }
 }
+
+
+/* Keep the highlighted "Buy" pill legible against the original brand's em rule. */
+.brand__name .brand__word-buy { color: #32134f; }
