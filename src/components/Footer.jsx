@@ -23,8 +23,8 @@ export default function Footer() {
             <Link to="/" className="footer__logo" aria-label={`${SITE_NAME} — home`}>
               <BrandMark size={32} />
               <span className="brand__text">
-                <span className="brand__name">
-                  Smart<em>Buy</em>India
+                <span className="brand__name" aria-label="SmartBuyIndia">
+                  <span className="brand__word-smart">Smart</span><em className="brand__word-buy">Buy</em><span className="brand__word-india">India</span>
                 </span>
                 <span className="brand__tagline" style={{ color: '#8fa8a1' }}>
                   {SITE_TAGLINE}
