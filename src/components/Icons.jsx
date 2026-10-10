@@ -20,7 +20,7 @@ const base = (props) => ({
 });
 
 /* -- Brand mark ------------------------------------------------------------ */
-export function BrandMark({ size = 34, ...props }) {
+export function BrandMark({ size = 44, ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,32 +28,38 @@ export function BrandMark({ size = 34, ...props }) {
       width={size}
       height={size}
       role="img"
-      aria-label="SmartBuyIndia"
+      aria-label="SmartBuyIndia discovery mark"
       {...props}
     >
-      <rect width="64" height="64" rx="15" fill="#0f3d33" />
+      <defs>
+        <linearGradient id="sbi-mark-sun" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FFF08A" />
+          <stop offset="1" stopColor="#FFD43B" />
+        </linearGradient>
+        <linearGradient id="sbi-mark-lens" x1="19" y1="16" x2="46" y2="48" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#6B42F2" />
+          <stop offset="1" stopColor="#32134F" />
+        </linearGradient>
+      </defs>
       <path
-        d="M20 22h24l-2.6 17.2a4 4 0 0 1-4 3.4H26.6a4 4 0 0 1-4-3.4L20 22Z"
-        fill="none"
-        stroke="#f5f2ea"
-        strokeWidth="3.4"
+        d="M32 2.8 38.3 10.9 48.2 6.7 49.1 17.6 59.3 22 53.6 32 59.3 42 49.1 46.4 48.2 57.3 38.3 53.1 32 61.2 25.7 53.1 15.8 57.3 14.9 46.4 4.7 42 10.4 32 4.7 22 14.9 17.6 15.8 6.7 25.7 10.9Z"
+        fill="url(#sbi-mark-sun)"
+        stroke="#FFF9E9"
+        strokeWidth="1.5"
         strokeLinejoin="round"
       />
+      <circle cx="30" cy="30" r="15.2" fill="url(#sbi-mark-lens)" stroke="#241039" strokeWidth="1.3" />
+      <circle cx="28.7" cy="28.1" r="7.1" fill="none" stroke="#FFFFFF" strokeWidth="3.2" />
+      <path d="m34 33.5 7.2 7.2" fill="none" stroke="#FFFFFF" strokeWidth="4.2" strokeLinecap="round" />
+      <path d="m24.9 28.2 2.6 2.6 5-5.1" fill="none" stroke="#9AE9D2" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
       <path
-        d="M26 22v-3a6 6 0 0 1 12 0v3"
-        fill="none"
-        stroke="#f5f2ea"
-        strokeWidth="3.4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M26.5 33.5 31 38l8-9"
-        fill="none"
-        stroke="#f0a500"
-        strokeWidth="4"
-        strokeLinecap="round"
+        d="M48 5.8 50.2 11.3 55.7 13.5 50.2 15.7 48 21.2 45.8 15.7 40.3 13.5 45.8 11.3Z"
+        fill="#FF665B"
+        stroke="#FFF8EF"
+        strokeWidth="1"
         strokeLinejoin="round"
       />
+      <circle cx="13.2" cy="49.3" r="2.3" fill="#FF8AB7" />
     </svg>
   );
 }
