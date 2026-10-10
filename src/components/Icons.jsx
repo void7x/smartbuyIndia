@@ -20,35 +20,30 @@ const base = (props) => ({
 });
 
 /* -- Brand mark ------------------------------------------------------------ */
-export function BrandMark({ size = 44, ...props }) {
+export function BrandMark({ size = 46, ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 64 64"
       width={size}
       height={size}
-      role="img"
-      aria-label="SmartBuyIndia discovery mark"
+      aria-hidden="true"
+      focusable="false"
       {...props}
     >
-      <defs>
-        <linearGradient id="sbi-mark-sun" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#FFF08A" />
-          <stop offset="1" stopColor="#FFD43B" />
-        </linearGradient>
-        <linearGradient id="sbi-mark-lens" x1="19" y1="16" x2="46" y2="48" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#6B42F2" />
-          <stop offset="1" stopColor="#32134F" />
-        </linearGradient>
-      </defs>
       <path
         d="M32 2.8 38.3 10.9 48.2 6.7 49.1 17.6 59.3 22 53.6 32 59.3 42 49.1 46.4 48.2 57.3 38.3 53.1 32 61.2 25.7 53.1 15.8 57.3 14.9 46.4 4.7 42 10.4 32 4.7 22 14.9 17.6 15.8 6.7 25.7 10.9Z"
-        fill="url(#sbi-mark-sun)"
+        fill="#FFD43B"
         stroke="#FFF9E9"
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
-      <circle cx="30" cy="30" r="15.2" fill="url(#sbi-mark-lens)" stroke="#241039" strokeWidth="1.3" />
+      <path
+        d="M32 8 36 14.1 43.4 11 44 19.2 51.8 22.5 47.5 30 51.8 37.5 44 40.8 43.4 49 36 45.9 32 52 28 45.9 20.6 49 20 40.8 12.2 37.5 16.5 30 12.2 22.5 20 19.2 20.6 11 28 14.1Z"
+        fill="#FF8AB7"
+        opacity=".65"
+      />
+      <circle cx="30" cy="30" r="15.2" fill="#5426D9" stroke="#32134F" strokeWidth="1.5" />
       <circle cx="28.7" cy="28.1" r="7.1" fill="none" stroke="#FFFFFF" strokeWidth="3.2" />
       <path d="m34 33.5 7.2 7.2" fill="none" stroke="#FFFFFF" strokeWidth="4.2" strokeLinecap="round" />
       <path d="m24.9 28.2 2.6 2.6 5-5.1" fill="none" stroke="#9AE9D2" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -59,7 +54,7 @@ export function BrandMark({ size = 44, ...props }) {
         strokeWidth="1"
         strokeLinejoin="round"
       />
-      <circle cx="13.2" cy="49.3" r="2.3" fill="#FF8AB7" />
+      <circle cx="13.2" cy="49.3" r="2.3" fill="#9AE9D2" />
     </svg>
   );
 }
